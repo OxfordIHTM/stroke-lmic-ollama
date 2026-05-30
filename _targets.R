@@ -170,7 +170,7 @@ deepseek_ollama_targets <- tar_plan(
   tar_target(
     name = deepseek_test_screen_primary,
     command = deepseek_screen_articles(
-      gemma_reviewer = deepseek_reviewer,
+      deepseek_reviewer = deepseek_reviewer,
       query = screening_prompt
     ),
     pattern = slice(screening_prompt, 1:20)
