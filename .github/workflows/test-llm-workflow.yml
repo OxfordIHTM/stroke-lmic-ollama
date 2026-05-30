@@ -29,5 +29,5 @@ jobs:
         
       - name: Run workflow
         run: |
-          targets::tar_make(dplyr::starts_with("ollama"))
+          targets::tar_make(dplyr::starts_with("gemma_test"))
         shell: Rscript {0}

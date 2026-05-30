@@ -39,6 +39,36 @@ data_targets <- tar_plan(
     command = retraction_load_data(
       path = retraction_watch_data_download_csv_file
     )
+  ),
+  wb_income_class_current_url = "https://ddh-openapi.worldbank.org/resources/DR0095333/download",
+  wb_income_class_historical_url = "https://ddh-openapi.worldbank.org/resources/DR0095334/download",
+  tar_target(
+    name = wb_income_class_current_download_file,
+    command = wb_download_income_class(
+      .url = wb_income_class_current_url,
+      path = "data-raw/wb_income_class_current.xlsx"
+    )
+  ),
+  tar_target(
+    name = wb_income_class_current_raw,
+    command = openxlsx::read.xlsx(
+      xlsxFile = wb_income_class_current_download_file
+    )
+  ),
+  tar_target(
+    name = wb_income_class_historical_download_file,
+    command = wb_download_income_class(
+      .url = wb_income_class_historical_url,
+      path = "data-raw/wb_income_class_historical.xlsx"
+    )
+  ),
+  tar_target(
+    name = wb_income_class_historical_raw,
+    command = openxlsx::read.xlsx(
+      xlsxFile = wb_income_class_historical_download_file,
+      sheet = "Country Analytical History", startRow = 12,
+      colNames = FALSE, skipEmptyRows = FALSE, skipEmptyCols = FALSE
+    )
   )
 )
 
@@ -56,6 +86,18 @@ processing_targets <- tar_plan(
     command = remove_retracted(
       search_df = search_full_deduplicated, 
       retraction_df = retraction_watch_data
+    )
+  ),
+  tar_target(
+    name = wb_income_class_current_processed,
+    command = wb_income_class_process(
+      wb_df = wb_income_class_current_raw, data_type = "current"
+    )
+  ),
+  tar_target(
+    name = wb_income_class_historical_processed,
+    command = wb_income_class_process(
+      wb_df = wb_income_class_historical_raw, data_type = "historical"
     )
   ),
   tar_target(
@@ -77,16 +119,42 @@ processing_targets <- tar_plan(
 )
 
 
+## Prompt targets ----
 prompt_targets <- tar_plan(
   tar_target(
+    name = wb_lmic_lic_prompt,
+    command = get_country_list(wb_df = wb_income_class_current_processed)
+  ),
+  tar_target(
     name = screening_context_prompt,
-    command = create_screening_context_prompt()
+    command = create_screening_context_prompt(wb_lmic_lic_prompt)
   ),
   tar_target(
     name = screening_prompt,
     command = create_screening_prompt(
       search_title = search_title, search_abstract = search_abstract
     )
+  )
+)
+
+
+## Ollama Gemma4 LLM targets ----
+gemma_ollama_targets <- tar_plan(
+  gemma_model = "gemma4:31b",
+  tar_target(
+    name = gemma_reviewer,
+    command = ellmer::chat_ollama(
+      system_prompt = screening_context_prompt, model = gemma_model
+    )
+  ),
+  tar_target(
+    name = gemma_test_screen_primary,
+    command = gemma_screen_articles(
+      model = gemma_model,
+      context = screening_context_prompt, 
+      query = screening_prompt
+    ),
+    pattern = slice(screening_prompt, 1:20)
   )
 )
 
