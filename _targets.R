@@ -150,8 +150,7 @@ gemma_ollama_targets <- tar_plan(
   tar_target(
     name = gemma_test_screen_primary,
     command = gemma_screen_articles(
-      model = gemma_model,
-      context = screening_context_prompt, 
+      gemma_reviewer = gemma_reviewer,
       query = screening_prompt
     ),
     pattern = slice(screening_prompt, 1:20)
