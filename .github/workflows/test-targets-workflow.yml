@@ -23,7 +23,7 @@ jobs:
           
       - name: Trust git repo
         run: |
-          git config --global --add safe.directory /__w/ihtm-targets-template/ihtm-targets-template
+          git config --global --add safe.directory /__w/stroke-lmic-ollama/stroke-lmic-ollama
           
       - name: Install packages from renv.lock (with cache)
         if: ${{ !env.ACT }}  
@@ -39,7 +39,6 @@ jobs:
         
       - name: Run workflow
         run: |
-          targets::tar_make()
+          targets::tar_make(search_full_processed_flattened_csv)
         shell: Rscript {0}
-        
         

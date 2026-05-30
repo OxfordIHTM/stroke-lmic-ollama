@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# A template R workflow for general data analysis
+# Mapping the Evidence Gaps for Stroke in Lower-Middle Income Countries (LMIC) and Low Income Countries (LIC) - Ollama workflow
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -10,15 +10,26 @@ This repository is a template for a
 [`docker`](https://www.docker.com/get-started)-containerised,
 [`{targets}`](https://docs.ropensci.org/targets/)-based,
 [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)-enabled
-[`R`](https://cran.r-project.org/) workflow for general data analysis.
+[`R`](https://cran.r-project.org/) workflow for mapping the evidence
+gaps for stroke in lower-middle income countries (LMICs) and low income
+countries (LICs) using open source large language models (LLMs) provided
+via [Ollama](https://ollama.com/).
 
 ## About the Project
+
+The burden of stroke is among the top five causes of mortality and
+morbidity in low-middle income countries (LMICs) and low income
+countries (LICs) and this burden is growing, yet evidence on
+contributing causes and the efficacy of interventions appears to be
+disproportionately generated in high-income settings for discrete
+population groups. This review maps existing evidence drawing on LMIC
+and LIC populations.
 
 ## Repository Structure
 
 The project repository is structured as follows:
 
-    ihtm-targets-template
+    stroke-lmic-ollama
         |-- .github/
         |-- data/
         |-- data-raw/
@@ -75,11 +86,106 @@ The project repository is structured as follows:
 
 ## Reproducibility
 
+### System dependencies
+
+This project requires the following system dependencies:
+
+- `poppler`
+
+This project depends on the
+[`{pdftools}`](https://poppler.freedesktop.org/) package which requires
+the `poppler` PDF rendering library to be installed first. For macOS and
+Windows users, installation of `{pdftools}` via the binary packages
+available from CRAN will deal with this requirement automatically.
+However, for Linux users, the `poppler` library will need to be
+installed first in order to be able to install `{pdftools}` from source.
+Installation of the `poppler` library for Linux is described
+[here](https://docs.ropensci.org/pdftools/#installation).
+
+- `quarto`
+
+This project uses the [`quarto`](https://quarto.org/) open-source
+scientific and technical publishing system. Instructions on how to
+download and install `quarto` can be found
+[here](https://quarto.org/docs/get-started/).
+
+- `ollama`
+
+This project uses `ollama` to serve open large language modles (LLM)
+locally. Instructions on how to download and install `ollama` can be
+found [here](https://ollama.com/download). This project specifically
+uses the open source `DeepSeek-R1` model. Once `ollama` is installed,
+pull one of the `DeepSeek-R1` models that fits into your local machine.
+The workflow has been developed and implemented using the
+`deepseek-r1:671b` model which requires about 404GB of random access
+memory (RAM). We would recommend using the same model where possible or
+if your machine has enough memory resources.
+
+### R version
+
+This project is built using `R 4.6.0`. To manage R versions, it is
+recommended to use [`rig`](https://github.com/r-lib/rig) - an R
+installation manager - to be able to install multiple versions of R and
+switch between them as needed.
+
 ### R package dependencies
 
-This project was built using `R 4.6.0`. This project uses the `renv`
-framework to record R package dependencies and versions. Packages and
-versions used are recorded in `renv.lock` and code used to manage
-dependencies is in `renv/` and other files in the root project
-directory. On starting an R session in the working directory, run
-`renv::restore()` to install R package dependencies.
+This project uses the `{renv}` framework to record R package
+dependencies and versions. Packages and versions used are recorded in
+`renv.lock` and code used to manage dependencies is in the `renv`
+directory and other files in the root project directory.
+
+On starting an R session in the working directory of this repository,
+first run
+
+``` r
+renv::restore()
+```
+
+to install R package dependencies. This is only done once when the
+project is being initiated for the first time by a user.
+
+### The workflow
+
+The current workflow has the following steps:
+
+Warning: program compiled against libxml 213 using older 209
+
+``` mermaid
+graph LR
+  style Graph fill:#FFFFFF00,stroke:#000000;
+  subgraph Graph
+    direction LR
+    xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::skipped --> x71f5d31f85b83ceb(["retraction_watch_data"]):::skipped
+    xe03e263fab696ab7(["retraction_watch_data_url"]):::skipped --> xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::skipped
+    x188aa7ffce88bb98(["ris_file_paths"]):::skipped --> x6ba4c23c2738dda8["ris_all"]:::skipped
+    x6ba4c23c2738dda8["ris_all"]:::skipped --> x4b7fcdd63fd7fb9a(["ris_all_file"]):::skipped
+    x971c8918645ea4f3(["search_abstract"]):::completed --> xf493b7d472ff5e59(["screening_prompt"]):::completed
+    x4946600ed43ea69a(["search_title"]):::completed --> xf493b7d472ff5e59(["screening_prompt"]):::completed
+    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> x971c8918645ea4f3(["search_abstract"]):::completed
+    x2f7fdb4e976b16f9(["search_full_raw"]):::skipped --> x2b5a5c97911afa83(["search_full_deduplicated"]):::skipped
+    x71f5d31f85b83ceb(["retraction_watch_data"]):::skipped --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped
+    x2b5a5c97911afa83(["search_full_deduplicated"]):::skipped --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped
+    xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped --> xcf6ddd66dde32d43(["search_full_processed"]):::completed
+    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> xd596227685e2e430(["search_full_processed_flattened"]):::completed
+    xd596227685e2e430(["search_full_processed_flattened"]):::completed --> x4b455536a354b302(["search_full_processed_flattened_csv"]):::completed
+    x4b7fcdd63fd7fb9a(["ris_all_file"]):::skipped --> x2f7fdb4e976b16f9(["search_full_raw"]):::skipped
+    x188aa7ffce88bb98(["ris_file_paths"]):::skipped --> xfda738880e222baf["search_full_ris"]:::skipped
+    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> x4946600ed43ea69a(["search_title"]):::completed
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::skipped
+  end
+```
+
+To run the workflow, issue the following command in R from within the
+project directory
+
+``` r
+targets::tar_make()
+```
+
+or issue the following command in Terminal from within the project
+directory
+
+``` bash
+Rscript -e  "targets::tar_make()"
+```

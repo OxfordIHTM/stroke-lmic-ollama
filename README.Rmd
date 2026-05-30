@@ -11,15 +11,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-# A template R workflow for general data analysis
+# Mapping the Evidence Gaps for Stroke in Lower-Middle Income Countries (LMIC) and Low Income Countries (LIC) - Ollama workflow
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-This repository is a template for a [`docker`](https://www.docker.com/get-started)-containerised, [`{targets}`](https://docs.ropensci.org/targets/)-based, [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)-enabled [`R`](https://cran.r-project.org/) workflow for general data analysis.
+This repository is a template for a [`docker`](https://www.docker.com/get-started)-containerised, [`{targets}`](https://docs.ropensci.org/targets/)-based, [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)-enabled [`R`](https://cran.r-project.org/) workflow for mapping the evidence gaps for stroke in lower-middle income countries (LMICs) and low income countries (LICs) using open source large language models (LLMs) provided via [Ollama](https://ollama.com/).
 
 ## About the Project
 
+The burden of stroke is among the top five causes of mortality and morbidity in low-middle income countries (LMICs) and low income countries (LICs) and this burden is growing, yet evidence on contributing causes and the efficacy of interventions appears to be disproportionately generated in high-income settings for discrete population groups. This review maps existing evidence drawing on LMIC and LIC populations.
 
 
 ## Repository Structure
@@ -27,7 +28,7 @@ This repository is a template for a [`docker`](https://www.docker.com/get-starte
 The project repository is structured as follows:
 
 ```
-ihtm-targets-template
+stroke-lmic-ollama
     |-- .github/
     |-- data/
     |-- data-raw/
@@ -65,7 +66,63 @@ ihtm-targets-template
 
 ## Reproducibility
 
+### System dependencies
+
+This project requires the following system dependencies:
+
+* `poppler`
+
+This project depends on the [`{pdftools}`](https://poppler.freedesktop.org/) package which requires the `poppler` PDF rendering library to be installed first. For macOS and Windows users, installation of `{pdftools}` via the binary packages available from CRAN will deal with this requirement automatically. However, for Linux users, the `poppler` library will need to be installed first in order to be able to install `{pdftools}` from source. Installation of the `poppler` library for Linux is described [here](https://docs.ropensci.org/pdftools/#installation).
+
+* `quarto`
+
+This project uses the [`quarto`](https://quarto.org/) open-source scientific and technical publishing system. Instructions on how to download and install `quarto` can be found [here](https://quarto.org/docs/get-started/).
+
+* `ollama`
+
+This project uses `ollama` to serve open large language modles (LLM) locally. Instructions on how to download and install `ollama` can be found [here](https://ollama.com/download). This project specifically uses the open source `DeepSeek-R1` model. Once `ollama` is installed, pull one of the `DeepSeek-R1` models that fits into your local machine. The workflow has been developed and implemented using the `deepseek-r1:671b` model which requires about 404GB of random access memory (RAM). We would recommend using the same model where possible or if your machine has enough memory resources.
+
+### R version
+
+This project is built using `R 4.6.0`. To manage R versions, it is recommended to use [`rig`](https://github.com/r-lib/rig) - an R installation manager - to be able to install multiple versions of R and switch between them as needed.
+
 ### R package dependencies
 
-This project was built using `R 4.6.0`. This project uses the `renv` framework to record R package dependencies and versions. Packages and versions used are recorded in `renv.lock` and code used to manage dependencies is in `renv/` and other files in the root project directory. On starting an R session in the working directory, run `renv::restore()` to install R package dependencies.
+This project uses the `{renv}` framework to record R package dependencies and versions. Packages and versions used are recorded in `renv.lock` and code used to manage dependencies is in the `renv` directory and other files in the root project directory.
 
+On starting an R session in the working directory of this repository, first run 
+
+```R
+renv::restore()
+```
+
+to install R package dependencies. This is only done once when the project is being initiated for the first time by a user.
+
+### The workflow
+
+The current workflow has the following steps:
+
+```{r full-workflow, echo = FALSE, results = "asis"}
+cat(
+  c(
+    "```mermaid",
+    targets::tar_mermaid(
+      targets_only = TRUE, outdated = FALSE, legend = FALSE, color = FALSE
+    ),
+    "```"
+  ),
+  sep = "\n"
+)
+```
+
+To run the workflow, issue the following command in R from within the project directory
+
+```R
+targets::tar_make()
+```
+
+or issue the following command in Terminal from within the project directory
+
+```bash
+Rscript -e  "targets::tar_make()"
+```
