@@ -158,6 +158,27 @@ gemma_ollama_targets <- tar_plan(
 )
 
 
+## Ollama Deepseek R1 LLM targets ----
+deepseek_ollama_targets <- tar_plan(
+  deepseek_model = "deepseek-r1:671b",
+  tar_target(
+    name = deepseek_reviewer,
+    command = ellmer::chat_ollama(
+      system_prompt = screening_context_prompt, model = deepseek_model
+    )
+  ),
+  tar_target(
+    name = deepseek_test_screen_primary,
+    command = deepseek_screen_articles(
+      gemma_reviewer = deepseek_reviewer,
+      query = screening_prompt
+    ),
+    pattern = slice(screening_prompt, 1:20)
+  )
+)
+
+
+
 ## Analysis targets ----
 analysis_targets <- tar_plan(
   

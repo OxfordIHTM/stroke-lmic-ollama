@@ -30,4 +30,5 @@ jobs:
       - name: Run workflow
         run: |
           targets::tar_make(dplyr::starts_with("gemma_test"))
+          targets::tar_make(dplyr::starts_with("deepseek_test"))
         shell: Rscript {0}
