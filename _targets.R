@@ -120,7 +120,7 @@ processing_targets <- tar_plan(
 
 
 ## Prompt targets ----
-prompt_targets <- tar_plan(
+llm_prompt_targets <- tar_plan(
   tar_target(
     name = wb_lmic_lic_prompt,
     command = get_country_list(wb_df = wb_income_class_current_processed)
@@ -134,6 +134,10 @@ prompt_targets <- tar_plan(
     command = create_screening_prompt(
       search_title = search_title, search_abstract = search_abstract
     )
+  ),
+  tar_target(
+    name = screening_output_type,
+    command = llm_create_screening_type()
   )
 )
 
@@ -154,8 +158,56 @@ gemma_ollama_targets <- tar_plan(
       query = screening_prompt
     ),
     pattern = slice(screening_prompt, 1:20)
+  ),
+  tar_target(
+    name = gemma_test_screen_parallel,
+    command = gemma_parallel_screen_articles(
+      gemma_reviewer = gemma_reviewer, query = screening_prompt
+    )
   )
 )
+
+
+## Ollama deepseek-r1 LLM targets ----
+deepseek_ollama_targets <- tar_plan(
+  deepseek_model = "deepseek-r1:671b",
+  tar_target(
+    name = deepseek_reviewer,
+    command = ellmer::chat_ollama(
+      system_prompt = screening_context_prompt, model = deepseek_model
+    )
+  ),
+  tar_target(
+    name = deepseek_test_screen_primary,
+    command = deepseek_screen_articles(
+      deepseek_reviewer = deepseek_reviewer,
+      query = screening_prompt
+    ),
+    pattern = slice(screening_prompt, 1:20)
+  )
+)
+
+
+## OLlama gpt-oss LLM targets ----
+gpt_ollama_targets <- tar_plan(
+  gpt_model = "gpt-oss:120b",
+  tar_target(
+    name = gpt_reviewer,
+    command = ellmer::chat_ollama(
+      system_prompt = screening_context_prompt, model = gpt_model
+    )
+  ),
+  tar_target(
+    name = gpt_test_screen_primary,
+    command = llm_screen_articles(
+      reviewer = gpt_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = slice(screening_prompt, 1:20)
+  )
+)
+
 
 
 ## Analysis targets ----
