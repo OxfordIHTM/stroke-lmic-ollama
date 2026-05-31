@@ -30,7 +30,7 @@ gemma_screen_articles <- function(gemma_reviewer, query) {
 }
 
 
-gemma_parallel_screen_articles <- function(gemma_review, query) {
+gemma_parallel_screen_articles <- function(gemma_reviewer, query) {
   type_classification <- ellmer::type_object(
     "A classification of journal articles on stroke",
     population = ellmer::type_boolean(
