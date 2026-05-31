@@ -6,7 +6,7 @@ llm_create_screening_type <- function() {
   ellmer::type_object(
     "A classification of journal articles on stroke",
     population = ellmer::type_boolean(
-      description = "Is the study about a population 18 years and older?"
+      description = "Is the study about a population of adults?"
     ),
     geography = ellmer::type_boolean(
       description = "Is the study conducted in a country classified as low-middle income or low income based on World Bank income classification?"

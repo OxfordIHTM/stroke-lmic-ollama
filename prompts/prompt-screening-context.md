@@ -65,12 +65,29 @@ As a research assistant, your task is to perform a preliminary screening and sel
 
 3. The study should be regarding 
 
-    a **stroke burden** (such as **prevalence**, **incidence**, **disability-adjusted life years**, *quality-adjusted life years**, **disability**, **death**, **hospitalisation**); or, 
+    a. **stroke burden** such as **prevalence** of stroke, **incidence** of stroke, **disability-adjusted life years** related to stroke, *quality-adjusted life years** related to stroke, **disability** related to stroke, **death** or **mortality** related to stroke, **morbidity** related to stroke **hospitalisation** due to stroke; or, 
     
-    b. **types of stroke** (such as **ischaemic stroke**, **haemorrhagic stroke**, **transient ischaemic attack**); or, 
+    b. **types of stroke** such as **ischaemic stroke**, **haemorrhagic stroke**, **transient ischaemic attack**; or, 
     
     c. **risk factors** for stroke; or,
     
     d. **interventions** for stroke.
 
-4. The study should be based on **primarily collected data** with a research design such as a **cohort study**, **case-control study**, **cross-sectional study**, or **interventional studies**. The studies cannot be reports, conference materials, reviews, study protocols, modelling studies, cost of illness studies, case series, case reports, and editorials.
+4. The study should be based on **primarily collected data** with a research design such as a
+
+    a. **cohort study**; or,
+    b. **case-control study**; or,
+    c. **cross-sectional study**; or,
+    d. **interventional studies**. 
+    
+The studies cannot be 
+
+    a. **reports**; or,
+    b. **conference materials**; or,
+    c. **reviews**; or,
+    d. **study protocols**; or, 
+    e. **modelling studies**; or, 
+    f. **cost of illness studies**; or, 
+    g. **case series**; or, 
+    h. **case reports**; or,
+    i. **editorials**.
