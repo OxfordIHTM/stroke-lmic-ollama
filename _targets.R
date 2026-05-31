@@ -144,8 +144,7 @@ gemma_ollama_targets <- tar_plan(
   tar_target(
     name = gemma_reviewer,
     command = ellmer::chat_ollama(
-      system_prompt = screening_context_prompt, model = gemma_model,
-      params = ellmer::params(temperature = 0.1, reasoning_effort = "high")
+      system_prompt = screening_context_prompt, model = gemma_model
     )
   ),
   tar_target(
@@ -155,6 +154,12 @@ gemma_ollama_targets <- tar_plan(
       query = screening_prompt
     ),
     pattern = slice(screening_prompt, 1:20)
+  ),
+  tar_target(
+    name = gemma_test_screen_parallel,
+    command = gemma_parallel_screen_articles(
+      gemma_reviewer = gemma_reviewer, query = screening_prompt
+    )
   )
 )
 
@@ -165,8 +170,7 @@ deepseek_ollama_targets <- tar_plan(
   tar_target(
     name = deepseek_reviewer,
     command = ellmer::chat_ollama(
-      system_prompt = screening_context_prompt, model = deepseek_model,
-      params = ellmer::params(temperature = 0.1, reasoning_effort = "high")
+      system_prompt = screening_context_prompt, model = deepseek_model
     )
   ),
   tar_target(
