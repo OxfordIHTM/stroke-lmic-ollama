@@ -9,14 +9,14 @@ llm_create_screening_type <- function() {
       description = "Is the study about a population of adults?"
     ),
     age_group = ellmer::type_string(
-      description = "Age group (such as 18 years and older or >= 18 years), age term or description (such as adult or adults or geriatric)",
+      description = "Age group or age characteristics of the study population or participants. This can be terms such as adult or adults or geriatric or child or children or pediatric or paediatric. This can also be descriptions such as a range from one age to another such as 10-15 years or 10 to 15 years or 18 years and older or >= 18 years.",
       required = FALSE
     ),
     geography = ellmer::type_boolean(
       description = "Is the study conducted in a country classified as low-middle income or low income based on World Bank income classification?"
     ),
     geography_name = ellmer::type_string(
-      description = "Name of the country the study is about", required = FALSE
+      description = "Name of the country where the study was conducted or the country or countries in which the study population or participants are from", required = FALSE
     ),
     publication_type = ellmer::type_boolean(
       description = "Is the study a primary study with a research design such as a cohort study, case-control study, cross-sectional study, or interventional studies"

@@ -20,29 +20,31 @@ As a research assistant, your task is to perform a preliminary screening and sel
 
 1. The study should be of an adult population or participants.
 
-    a. By default, you should assume that a study is that of an adult population or participants unless there are terms or words that indicate that the study is that of a children population or participants.
+    a. First, identify from the title and/or abstract of the study the age group or age characteristics of the study population or participants. This can be terms such as **adult** or **adults** or **geriatric** or **child** or **children** or **pediatric** or **paediatric**. This can also be descriptions such as a range from one age to another such as **10-15 years** or **10 to 15 years** or **18 years and older** or **>= 18 years**. It is possible that the title and/or abstract will not have a description of the age group or age characteristics of the study population or participants.
 
-    b. If the title and/or abstract does not contain ages or age groups of study population or participants but instead has the words **child** or **children** or **pediatric** or **paediatric** to describe its population or participants, then this study is not of an adult population or participants. For example, in this title
+    b. After identifying the age group of age characteristics of the study population or participants, determine whether this age group or age characteristic refers to an adult study population or participants.
+
+    c. If you have identified age group or age characteristics such as **adult** or **adults** or **geriatric** or **18 years and older** or **>= 18 years**, then the study meets this specific criteria of the scoping review.
+
+    d. If the title and/or abstract does not contain ages or age groups of study population or participants but instead has the words **child** or **children** or **pediatric** or **paediatric** to describe its population or participants, then this study is not of an adult population or participants. For example, in this title
 
         Title: Focal Cerebral Arteriopathy Severity Score Validation and Temporal Dynamics in Korean Pediatric Stroke: Distinguishing Inflammatory Arteriopathy From Unilateral Moyamoya Disease
 
-    it contains the descriptive term *Pediatric* signifying that the study participants are children. This study does not meet the criteria for the study population.
+    it contains the descriptive term *Pediatric* signifying that the study participants are children. This study does not meet this criteria for the study population.
+
+    e. For studies where you are unable to identify the age group or age characteristics of the study population or participants, you should assume that a study is that of an adult population or participants and that it meets this specific criteria of the scoping review.
 
 2. The study should be of a population or participants living in lower-middle income countries (LMIC) or low income countries (LIC) based on the most recent World Bank country classification by income. These countries are {{ wb_lmic_lic_prompt }}. 
 
-    a. If the title and/or abstract of the study contains any of the names of these countries, then the study population or participants are from lower-middle income countries (LMIC) or low income countries (LIC). For example, in this title
+    a. First, identify from the title and/or abstract of the study the country or countries where it was conducted or the country or countries in which the study population or participants are from.
 
-        Title: Cardiovascular diseases among people living with HIV/AIDS in Ethiopia: A scoping review
+    b. After identifying the country or countries where the study was conducted or the country or countries in which the study population or participants are from, check whether the country or countries are in the list of lower-middle income countries and low income countries.
 
-    the country Ethiopia is mentioned. Ethiopia is on the World Bank list of lower-middle income countries (LMIC). This study meets the criteria for geography.
+    c. If the identified country or countries where the study was conducted or the country or countries in which the study population or participants are from match those on the list of lower-middle income countries and low income countries, then this study meets this criteria. For a study with more than one country where the study was conducted or the country or countries in which the study population or participants are from, if at least one of the countries match those on the list of lower-middle income countries and low income countries then the study meets this specific criteria.
+
+    d. If none of the the identified country or countries where the study was conducted or the country or countries in which the study population or participants are from match those on the list of lower-middle income countries and low income countries, then the study does not meet this specific criteria.
     
-    b. If the title and/or abstract of the study doesn't contain any of the names of these countries but has terms such as **developing countries** or **lower-middle income countries** or **low income countries** or **global south** or **sub-Saharan Africa**, then the study population or participants are from lower-middle income countries (LMIC) or low income countries (LIC). For example, in this abstract
-
-        Abstract: Introduction: Atrial fibrillation (AF) is a major cardiovascular complication of thyrotoxicosis but its burden and predictors are poorly described in sub-Saharan Africa...
-
-    No specific country is mentioned but the term sub-Saharan Africa is used. This is a related term that signifies lower-middle income country or low income country. This study meets the criteria for geography.
-    
-    c. If the study title and/or abstract doesn't contain any of the names of these countries and doesn't contain any terms such as **developing countries** or **lower-middle income countries** or **low income countries** or **global south** or **sub-Saharan Africa**, then the study population or participants are not from lower-middle income countries (LMIC) or low income countries (LIC).
+    e. If the study title and/or abstract doesn't contain any information on the country or countries where the study was conducted or the country or countries in which the study population or participants are from, then you can assume that the study doesn't meet this specific criteria.
 
 3. The study should be regarding 
 
