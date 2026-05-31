@@ -16,7 +16,8 @@ llm_create_screening_type <- function() {
       description = "Is the study conducted in a country classified as low-middle income or low income based on World Bank income classification?"
     ),
     geography_name = ellmer::type_string(
-      description = "Name of the country where the study was conducted or the country or countries in which the study population or participants are from", required = FALSE
+      description = "Name of the country where the study was conducted or the country or countries in which the study population or participants are from", 
+      required = FALSE
     ),
     publication_type = ellmer::type_boolean(
       description = "Is the study a primary study with a research design such as a cohort study, case-control study, cross-sectional study, or interventional studies"
