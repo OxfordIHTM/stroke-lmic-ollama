@@ -4,7 +4,7 @@
 
 llm_create_screening_type <- function() {
   ellmer::type_object(
-    "A classification of journal articles on stroke",
+    "Criteria for journal articles on stroke to include in the scoping review",
     population = ellmer::type_boolean(
       description = "Is the study about a population of adults?"
     ),
