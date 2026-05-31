@@ -127,12 +127,13 @@ llm_prompt_targets <- tar_plan(
   ),
   tar_target(
     name = screening_context_prompt,
-    command = create_screening_context_prompt(wb_lmic_lic_prompt)
+    command =  interpolate_screening_context_prompt(wb_lmic_lic_prompt)
   ),
   tar_target(
     name = screening_prompt,
-    command = create_screening_prompt(
-      search_title = search_title, search_abstract = search_abstract
+    command = interpolate_screening_prompt(
+      search_title = search_title, 
+      search_abstract = search_abstract
     )
   ),
   tar_target(
@@ -148,22 +149,25 @@ gemma_ollama_targets <- tar_plan(
   tar_target(
     name = gemma_reviewer,
     command = ellmer::chat_ollama(
-      system_prompt = screening_context_prompt, model = gemma_model
+      system_prompt = screening_context_prompt, 
+      model = gemma_model
     )
   ),
   tar_target(
     name = gemma_test_screen_primary,
-    command = gemma_screen_articles(
-      gemma_reviewer = gemma_reviewer,
-      query = screening_prompt
+    command = llm_screen_articles(
+      reviewer = gemma_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
     ),
     pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
     name = gemma_test_screen_parallel,
-    command = gemma_parallel_screen_articles(
-      gemma_reviewer = gemma_reviewer, 
-      query = as.list(screening_prompt)
+    command = llm_parallel_screen_articles(
+      reviewer = gemma_reviewer, 
+      query = screening_prompt,
+      type = screening_output_type
     )
   )
 )
@@ -180,9 +184,10 @@ deepseek_ollama_targets <- tar_plan(
   ),
   tar_target(
     name = deepseek_test_screen_primary,
-    command = deepseek_screen_articles(
-      deepseek_reviewer = deepseek_reviewer,
-      query = screening_prompt
+    command = llm_screen_articles(
+      reviewer = deepseek_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
     ),
     pattern = slice(screening_prompt, 1:20)
   )
