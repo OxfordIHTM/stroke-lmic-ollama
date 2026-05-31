@@ -29,6 +29,9 @@ gemma_screen_articles <- function(gemma_reviewer, query) {
     stats::setNames(nm = col_names)
 }
 
+#'
+#' Screen the search articles using Google Gemma via Ollama
+#' 
 
 gemma_parallel_screen_articles <- function(gemma_reviewer, query) {
   type_classification <- ellmer::type_object(
@@ -48,6 +51,7 @@ gemma_parallel_screen_articles <- function(gemma_reviewer, query) {
   )
 
   ellmer::parallel_chat_structured(
-    chat = gemma_reviewer, prompts = as.list(query), type = type_classification
+    chat = gemma_reviewer, prompts = as.list(query),
+    type = type_classification, on_error = "continue"
   )
 }

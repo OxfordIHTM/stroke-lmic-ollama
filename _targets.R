@@ -163,8 +163,7 @@ gemma_ollama_targets <- tar_plan(
     name = gemma_test_screen_parallel,
     command = gemma_parallel_screen_articles(
       gemma_reviewer = gemma_reviewer, 
-      query = as.list(screening_prompt),
-      on_error = "continue"
+      query = as.list(screening_prompt)
     )
   )
 )
