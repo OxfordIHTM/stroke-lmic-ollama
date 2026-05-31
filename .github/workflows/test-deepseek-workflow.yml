@@ -1,10 +1,10 @@
-name: test llm workflow
+name: test deepseek workflow
 
 on:
   workflow_dispatch:
 
 jobs:
-  test-llm-workflow:
+  test-deepseek-workflow:
     runs-on: self-hosted
     env:
       GIT_CRYPT_KEY64: ${{ secrets.GIT_CRYPT_KEY64 }}
@@ -25,5 +25,5 @@ jobs:
         
       - name: Run workflow
         run: |
-          targets::tar_make(dplyr::starts_with("gemma_test"))
+          targets::tar_make(dplyr::starts_with("deepseek_test"))
         shell: Rscript {0}
