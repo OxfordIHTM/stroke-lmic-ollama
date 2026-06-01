@@ -150,7 +150,7 @@ llm_prompt_targets <- tar_plan(
 )
 
 
-## Ollama Gemma4 LLM targets ----
+## Ollama gemma4 LLM targets ----
 gemma_ollama_targets <- tar_plan(
   gemma_model = "gemma4:31b",
   tar_target(
@@ -201,7 +201,7 @@ deepseek_ollama_targets <- tar_plan(
 )
 
 
-## OLlama gpt-oss LLM targets ----
+## Ollama gpt-oss LLM targets ----
 gpt_ollama_targets <- tar_plan(
   gpt_model = "gpt-oss:120b",
   tar_target(
@@ -221,6 +221,26 @@ gpt_ollama_targets <- tar_plan(
   )
 )
 
+
+## Ollama qwen3.5 LLM targets ----
+qwen_ollama_targets <- tar_plan(
+  qwen_model = "qwen3.5:122b",
+  tar_target(
+    name = qwen_reviewer,
+    command = ellmer::chat_ollama(
+      system_prompt = screening_context_prompt, model = qwen_model
+    )
+  ),
+  tar_target(
+    name = qwen_test_screen_primary,
+    command = llm_screen_articles(
+      reviewer = qwen_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = slice(screening_prompt, 1:20)
+  )
+)
 
 
 ## Analysis targets ----
