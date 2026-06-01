@@ -38,13 +38,13 @@ As a research assistant, your task is to perform a preliminary screening and sel
 
     a. First, identify from the title and/or abstract of the study the country or countries where it was conducted or the country or countries in which the study population or participants are from. These countries can be one or more of the following: {{ country_list_prompt }}
 
-    b. After identifying the country or countries where the study was conducted or the country or countries in which the study population or participants are from, check whether the country or countries are in the list of lower-middle income countries and low income countries. These countries are {{ wb_lmic_lic_prompt }}
+    b. After identifying the country or countries where the study was conducted or the country or countries in which the study population or participants are from, check whether the country or countries are in the following list of lower-middle income countries and low income countries: {{ wb_lmic_lic_prompt }}
 
     c. If the identified country or countries where the study was conducted or the country or countries in which the study population or participants are from match those on the list of lower-middle income countries and low income countries, then this study meets this criteria. For a study with more than one country where the study was conducted or the country or countries in which the study population or participants are from, if at least one of the countries match those on the list of lower-middle income countries and low income countries then the study meets this specific criteria.
 
     d. If none of the the identified country or countries where the study was conducted or the country or countries in which the study population or participants are from match those on the list of lower-middle income countries and low income countries, then the study does not meet this specific criteria.
     
-    e. If the study title and/or abstract doesn't contain any information on the country or countries where the study was conducted or the country or countries in which the study population or participants are from, then you can assume that the study doesn't meet this specific criteria.
+    e. If the study title and/or abstract doesn't contain any information on the country or countries where the study was conducted or the country or countries in which the study population or participants are from, then you can assume that the study meets this specific criteria.
 
 3. The study should be regarding 
 
