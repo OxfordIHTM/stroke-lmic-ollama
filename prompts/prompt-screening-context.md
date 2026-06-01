@@ -36,9 +36,9 @@ As a research assistant, your task is to perform a preliminary screening and sel
 
 2. The study should be of a population or participants living in lower-middle income countries (LMIC) or low income countries (LIC) based on the most recent World Bank country classification by income. 
 
-    a. First, identify from the title and/or abstract of the study the country or countries where it was conducted or the country or countries in which the study population or participants are from. These countries can be one or more of the following: {{ country_list_prompt }.}
+    a. First, identify from the title and/or abstract of the study the country or countries where it was conducted or the country or countries in which the study population or participants are from. These countries can be one or more of the following: {{ country_list_prompt }}
 
-    b. After identifying the country or countries where the study was conducted or the country or countries in which the study population or participants are from, check whether the country or countries are in the list of lower-middle income countries and low income countries. These countries are {{ wb_lmic_lic_prompt }}.
+    b. After identifying the country or countries where the study was conducted or the country or countries in which the study population or participants are from, check whether the country or countries are in the list of lower-middle income countries and low income countries. These countries are {{ wb_lmic_lic_prompt }}
 
     c. If the identified country or countries where the study was conducted or the country or countries in which the study population or participants are from match those on the list of lower-middle income countries and low income countries, then this study meets this criteria. For a study with more than one country where the study was conducted or the country or countries in which the study population or participants are from, if at least one of the countries match those on the list of lower-middle income countries and low income countries then the study meets this specific criteria.
 
