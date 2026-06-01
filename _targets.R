@@ -218,6 +218,15 @@ gpt_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = slice(screening_prompt, 1:20)
+  ),
+  tar_target(
+    name = gpt_screen_primary,
+    command = llm_screen_articles(
+      reviewer = gpt_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = map(screening_prompt)
   )
 )
 
