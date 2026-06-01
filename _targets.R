@@ -133,7 +133,8 @@ llm_prompt_targets <- tar_plan(
     name = screening_context_prompt,
     command =  interpolate_screening_context_prompt(
       country_list_prompt, wb_lmic_lic_prompt
-    )
+    ),
+    cue = tar_cue("always")
   ),
   tar_target(
     name = screening_prompt,
