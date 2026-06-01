@@ -6,11 +6,11 @@
 llm_screen_articles <- function(reviewer, query, type) {
   out <- reviewer$chat_structured(query, type = type)
 
-  # matrix(data = out, nrow = 1, ncol = 8, byrow = TRUE) |>
-  #   data.frame() |>
-  #   stats::setNames(nm = col_names)
+  col_names <- names(out)
 
-  data.frame(out)
+  matrix(data = out, nrow = 1, ncol = 8, byrow = TRUE) |>
+    data.frame() |>
+    stats::setNames(nm = col_names)
 }
 
 
