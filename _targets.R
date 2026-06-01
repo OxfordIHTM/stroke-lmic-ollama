@@ -182,7 +182,7 @@ gemma_ollama_targets <- tar_plan(
 
 ## Ollama deepseek-r1 LLM targets ----
 deepseek_ollama_targets <- tar_plan(
-  deepseek_model = "deepseek-r1:671b",
+  deepseek_model = "deepseek-r1:70b",
   tar_target(
     name = deepseek_reviewer,
     command = ellmer::chat_ollama(

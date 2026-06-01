@@ -10,7 +10,7 @@ llm_screen_articles <- function(reviewer, query, type) {
   #   data.frame() |>
   #   stats::setNames(nm = col_names)
 
-  tibble::as_tibble(out)
+  data.frame(out)
 }
 
 
