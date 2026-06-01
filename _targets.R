@@ -122,6 +122,10 @@ processing_targets <- tar_plan(
 ## Prompt targets ----
 llm_prompt_targets <- tar_plan(
   tar_target(
+    name = country_list_prompt,
+    command = get_all_country_list(wb_df = wb_income_class_current_processed)
+  ),
+  tar_target(
     name = wb_lmic_lic_prompt,
     command = get_country_list(wb_df = wb_income_class_current_processed)
   ),

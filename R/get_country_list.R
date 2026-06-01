@@ -12,3 +12,11 @@ get_country_list <- function(wb_df) {
     paste(collapse = "; ") |>
     paste0(".")
 }
+
+
+get_all_country_list <- function(wb_df) {
+  wb_df |>
+    dplyr::pull(economy) |>
+    paste(collapse = "; ") |>
+    paste0(".")
+}
