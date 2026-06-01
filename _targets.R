@@ -122,12 +122,19 @@ processing_targets <- tar_plan(
 ## Prompt targets ----
 llm_prompt_targets <- tar_plan(
   tar_target(
+    name = country_list_prompt,
+    command = get_all_country_list(wb_df = wb_income_class_current_processed)
+  ),
+  tar_target(
     name = wb_lmic_lic_prompt,
     command = get_country_list(wb_df = wb_income_class_current_processed)
   ),
   tar_target(
     name = screening_context_prompt,
-    command =  interpolate_screening_context_prompt(wb_lmic_lic_prompt)
+    command =  interpolate_screening_context_prompt(
+      country_list_prompt, wb_lmic_lic_prompt
+    ),
+    cue = tar_cue("always")
   ),
   tar_target(
     name = screening_prompt,
@@ -143,7 +150,7 @@ llm_prompt_targets <- tar_plan(
 )
 
 
-## Ollama Gemma4 LLM targets ----
+## Ollama gemma4 LLM targets ----
 gemma_ollama_targets <- tar_plan(
   gemma_model = "gemma4:31b",
   tar_target(
@@ -160,7 +167,7 @@ gemma_ollama_targets <- tar_plan(
       query = screening_prompt,
       type = screening_output_type
     ),
-    pattern = slice(screening_prompt, 1:5)
+    pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
     name = gemma_test_screen_parallel,
@@ -175,7 +182,7 @@ gemma_ollama_targets <- tar_plan(
 
 ## Ollama deepseek-r1 LLM targets ----
 deepseek_ollama_targets <- tar_plan(
-  deepseek_model = "deepseek-r1:671b",
+  deepseek_model = "deepseek-r1:70b",
   tar_target(
     name = deepseek_reviewer,
     command = ellmer::chat_ollama(
@@ -194,7 +201,7 @@ deepseek_ollama_targets <- tar_plan(
 )
 
 
-## OLlama gpt-oss LLM targets ----
+## Ollama gpt-oss LLM targets ----
 gpt_ollama_targets <- tar_plan(
   gpt_model = "gpt-oss:120b",
   tar_target(
@@ -214,6 +221,26 @@ gpt_ollama_targets <- tar_plan(
   )
 )
 
+
+## Ollama qwen3.5 LLM targets ----
+qwen_ollama_targets <- tar_plan(
+  qwen_model = "qwen3.5:122b",
+  tar_target(
+    name = qwen_reviewer,
+    command = ellmer::chat_ollama(
+      system_prompt = screening_context_prompt, model = qwen_model
+    )
+  ),
+  tar_target(
+    name = qwen_test_screen_primary,
+    command = llm_screen_articles(
+      reviewer = qwen_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = slice(screening_prompt, 1:20)
+  )
+)
 
 
 ## Analysis targets ----
