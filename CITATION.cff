@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+authors:
+  - family-names: Cong Tran
+    given-names: Minh
+    orcid: https://orcid.org/0000-0003-2622-1365
+  - family-names: Guevarra
+    given-names: Ernest
+    orcid: https://orcid.org/0000-0002-4887-4415
+contact:
+  - affiliation: "University of Oxford MSc in International Health and Tropical Medicine"
+    email: ernest@guevarra.io
+    family-names: Guevarra
+    given-names: Ernest
+message: "If you use the software in this repository, please cite the software as below"
+title: "Mapping the Evidence Gaps for Stroke in Lower-Middle Income Countries (LMIC) and Low Income Countries (LIC): A Scoping Review Using Open Source Large Language Models"
+repository-code: https://github.com/OxfordIHTM/stroke-lmic-ollama
+license: CC-BY-4.0
+date-released: 2026-06-05
+version: 0.0.0.9000
+# identifiers:
+#   - type: doi
+#     value: 10.5281/zenodo.20556745

@@ -4,6 +4,18 @@
 # Mapping the Evidence Gaps for Stroke in Lower-Middle Income Countries (LMIC) and Low Income Countries (LIC) - Ollama workflow
 
 <!-- badges: start -->
+
+[![Project Status: WIP – Initial development is in progress, but there
+has not yet been a stable, usable release suitable for the
+public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![License for
+code](https://img.shields.io/badge/license_for_code-GPL3.0-blue)](https://opensource.org/licenses/gpl-3.0.html)
+[![License for
+text](https://img.shields.io/badge/license_for_writing-CC_BY_4.0-blue)](https://creativecommons.org/licenses/by/4.0/)
+[![License for
+data](https://img.shields.io/badge/license_for_data-CC0-blue)](https://creativecommons.org/public-domain/cc0/)
+[![test targets
+workflow](https://github.com/OxfordIHTM/stroke-lmic-ollama/actions/workflows/test-targets-workflow.yml/badge.svg)](https://github.com/OxfordIHTM/stroke-lmic-ollama/actions/workflows/test-targets-workflow.yml)
 <!-- badges: end -->
 
 This repository is a template for a
@@ -18,8 +30,7 @@ via [Ollama](https://ollama.com/).
 ## About the Project
 
 The burden of stroke is among the top five causes of mortality and
-morbidity in low-middle income countries (LMICs) and low income
-countries (LICs) and this burden is growing, yet evidence on
+morbidity LMICs and LICs and this burden is growing, yet evidence on
 contributing causes and the efficacy of interventions appears to be
 disproportionately generated in high-income settings for discrete
 population groups. This review maps existing evidence drawing on LMIC
@@ -93,33 +104,41 @@ This project requires the following system dependencies:
 - `poppler`
 
 This project depends on the
-[`{pdftools}`](https://poppler.freedesktop.org/) package which requires
-the `poppler` PDF rendering library to be installed first. For macOS and
-Windows users, installation of `{pdftools}` via the binary packages
-available from CRAN will deal with this requirement automatically.
-However, for Linux users, the `poppler` library will need to be
-installed first in order to be able to install `{pdftools}` from source.
-Installation of the `poppler` library for Linux is described
+[`{pdftools}`](https://docs.ropensci.org/pdftools/) package which
+requires the [`poppler`](https://poppler.freedesktop.org/) PDF rendering
+library to be installed first. For macOS and Windows users, installation
+of `{pdftools}` via the binary packages available from CRAN will deal
+with this requirement automatically. However, for Linux users, the
+`poppler` library will need to be installed first in order to be able to
+install `{pdftools}` from source. Installation of the `poppler` library
+for Linux is described
 [here](https://docs.ropensci.org/pdftools/#installation).
 
 - `quarto`
 
-This project uses the [`quarto`](https://quarto.org/) open-source
+This project uses v1.9.37 of [`quarto`](https://quarto.org/) open-source
 scientific and technical publishing system. Instructions on how to
 download and install `quarto` can be found
 [here](https://quarto.org/docs/get-started/).
 
 - `ollama`
 
-This project uses `ollama` to serve open large language modles (LLM)
-locally. Instructions on how to download and install `ollama` can be
-found [here](https://ollama.com/download). This project specifically
-uses the open source `DeepSeek-R1` model. Once `ollama` is installed,
-pull one of the `DeepSeek-R1` models that fits into your local machine.
-The workflow has been developed and implemented using the
-`deepseek-r1:671b` model which requires about 404GB of random access
-memory (RAM). We would recommend using the same model where possible or
-if your machine has enough memory resources.
+This project uses [`ollama`](https://ollama.com/) to serve open large
+language models locally. Instructions on how to download and install
+`ollama` can be found [here](https://ollama.com/download). This project
+specifically uses the following open source models available via
+`ollama`:
+
+| **Model Name**    | **RAM size** | **Context Window** |
+|:------------------|-------------:|-------------------:|
+| `gemma4:31b`      |         20GB |     256,000 tokens |
+| `deepseek-r1:70b` |         43GB |     128,000 tokens |
+| `qwen3.5:122b`    |         81GB |     256,000 tokens |
+
+Once `ollama` is installed, pull the mentioned models above into your
+local machine. Please note the required random access memory (RAM) sizes
+for each of these models and ensure that the machine you are using has
+enough RAM to fit these models.
 
 ### R version
 
@@ -156,23 +175,59 @@ graph LR
   style Graph fill:#FFFFFF00,stroke:#000000;
   subgraph Graph
     direction LR
-    xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::skipped --> x71f5d31f85b83ceb(["retraction_watch_data"]):::skipped
-    xe03e263fab696ab7(["retraction_watch_data_url"]):::skipped --> xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::skipped
-    x188aa7ffce88bb98(["ris_file_paths"]):::skipped --> x6ba4c23c2738dda8["ris_all"]:::skipped
-    x6ba4c23c2738dda8["ris_all"]:::skipped --> x4b7fcdd63fd7fb9a(["ris_all_file"]):::skipped
-    x971c8918645ea4f3(["search_abstract"]):::completed --> xf493b7d472ff5e59(["screening_prompt"]):::completed
-    x4946600ed43ea69a(["search_title"]):::completed --> xf493b7d472ff5e59(["screening_prompt"]):::completed
-    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> x971c8918645ea4f3(["search_abstract"]):::completed
-    x2f7fdb4e976b16f9(["search_full_raw"]):::skipped --> x2b5a5c97911afa83(["search_full_deduplicated"]):::skipped
-    x71f5d31f85b83ceb(["retraction_watch_data"]):::skipped --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped
-    x2b5a5c97911afa83(["search_full_deduplicated"]):::skipped --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped
-    xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped --> xcf6ddd66dde32d43(["search_full_processed"]):::completed
-    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> xd596227685e2e430(["search_full_processed_flattened"]):::completed
-    xd596227685e2e430(["search_full_processed_flattened"]):::completed --> x4b455536a354b302(["search_full_processed_flattened_csv"]):::completed
-    x4b7fcdd63fd7fb9a(["ris_all_file"]):::skipped --> x2f7fdb4e976b16f9(["search_full_raw"]):::skipped
-    x188aa7ffce88bb98(["ris_file_paths"]):::skipped --> xfda738880e222baf["search_full_ris"]:::skipped
-    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> x4946600ed43ea69a(["search_title"]):::completed
-    x60ed8e986a8cab2a(["screening_context_prompt"]):::skipped
+    xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::skipped --> x9ce45b64b41c86a9(["country_list_prompt"]):::skipped
+    x22ff41defec165cc(["deepseek_model"]):::queued --> xa7cacf98a8901b23(["deepseek_reviewer"]):::queued
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> xa7cacf98a8901b23(["deepseek_reviewer"]):::queued
+    xa7cacf98a8901b23(["deepseek_reviewer"]):::queued --> x1cd58d886269795c["deepseek_test_screen_primary"]:::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> x1cd58d886269795c["deepseek_test_screen_primary"]:::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x1cd58d886269795c["deepseek_test_screen_primary"]:::queued
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> xeb04618c59839428(["gemma_reviewer"]):::queued
+    xfac2732c01b1bb30(["gemma_model"]):::queued --> xeb04618c59839428(["gemma_reviewer"]):::queued
+    xeb04618c59839428(["gemma_reviewer"]):::queued --> x96f0ea544e9b01e9(["gemma_test_screen_parallel"]):::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> x96f0ea544e9b01e9(["gemma_test_screen_parallel"]):::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x96f0ea544e9b01e9(["gemma_test_screen_parallel"]):::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> xa29db1d3ac8283bc["gemma_test_screen_primary"]:::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> xa29db1d3ac8283bc["gemma_test_screen_primary"]:::queued
+    xeb04618c59839428(["gemma_reviewer"]):::queued --> xa29db1d3ac8283bc["gemma_test_screen_primary"]:::queued
+    x17ceb73139f385c0(["gpt_model"]):::completed --> x3b36e37aef5a26b7(["gpt_reviewer"]):::errored
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> x3b36e37aef5a26b7(["gpt_reviewer"]):::errored
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
+    x3b36e37aef5a26b7(["gpt_reviewer"]):::errored --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x8a5a89d2558ba09e["gpt_test_screen_primary"]:::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> x8a5a89d2558ba09e["gpt_test_screen_primary"]:::queued
+    x3b36e37aef5a26b7(["gpt_reviewer"]):::errored --> x8a5a89d2558ba09e["gpt_test_screen_primary"]:::queued
+    xbd7be77f61000ca6(["qwen_model"]):::queued --> x2231fd7fbf277364(["qwen_reviewer"]):::queued
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> x2231fd7fbf277364(["qwen_reviewer"]):::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x888498e3b5d283fb["qwen_test_screen_primary"]:::queued
+    x2231fd7fbf277364(["qwen_reviewer"]):::queued --> x888498e3b5d283fb["qwen_test_screen_primary"]:::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> x888498e3b5d283fb["qwen_test_screen_primary"]:::queued
+    xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::queued --> x71f5d31f85b83ceb(["retraction_watch_data"]):::queued
+    xe03e263fab696ab7(["retraction_watch_data_url"]):::queued --> xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::queued
+    x188aa7ffce88bb98(["ris_file_paths"]):::queued --> x6ba4c23c2738dda8["ris_all"]:::queued
+    x6ba4c23c2738dda8["ris_all"]:::queued --> x4b7fcdd63fd7fb9a(["ris_all_file"]):::queued
+    x9ce45b64b41c86a9(["country_list_prompt"]):::skipped --> x60ed8e986a8cab2a(["screening_context_prompt"]):::completed
+    x695fa0d6d05420ec(["wb_lmic_lic_prompt"]):::skipped --> x60ed8e986a8cab2a(["screening_context_prompt"]):::completed
+    x971c8918645ea4f3(["search_abstract"]):::queued --> xf493b7d472ff5e59(["screening_prompt"]):::queued
+    x4946600ed43ea69a(["search_title"]):::queued --> xf493b7d472ff5e59(["screening_prompt"]):::queued
+    xcf6ddd66dde32d43(["search_full_processed"]):::queued --> x971c8918645ea4f3(["search_abstract"]):::queued
+    x2f7fdb4e976b16f9(["search_full_raw"]):::queued --> x2b5a5c97911afa83(["search_full_deduplicated"]):::queued
+    x71f5d31f85b83ceb(["retraction_watch_data"]):::queued --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::queued
+    x2b5a5c97911afa83(["search_full_deduplicated"]):::queued --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::queued
+    xe0f5c577fdbd2edb(["search_full_no_retractions"]):::queued --> xcf6ddd66dde32d43(["search_full_processed"]):::queued
+    xcf6ddd66dde32d43(["search_full_processed"]):::queued --> xd596227685e2e430(["search_full_processed_flattened"]):::queued
+    xd596227685e2e430(["search_full_processed_flattened"]):::queued --> x4b455536a354b302(["search_full_processed_flattened_csv"]):::queued
+    x4b7fcdd63fd7fb9a(["ris_all_file"]):::queued --> x2f7fdb4e976b16f9(["search_full_raw"]):::queued
+    x188aa7ffce88bb98(["ris_file_paths"]):::queued --> xfda738880e222baf["search_full_ris"]:::queued
+    xcf6ddd66dde32d43(["search_full_processed"]):::queued --> x4946600ed43ea69a(["search_title"]):::queued
+    x1d55ec70bfb3e5c3(["wb_income_class_current_url"]):::skipped --> x2ba514579f98d31e(["wb_income_class_current_download_file"]):::skipped
+    x04b0674ebb1d4224(["wb_income_class_current_raw"]):::skipped --> xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::skipped
+    x2ba514579f98d31e(["wb_income_class_current_download_file"]):::skipped --> x04b0674ebb1d4224(["wb_income_class_current_raw"]):::skipped
+    x2bea19edd962dff0(["wb_income_class_historical_url"]):::queued --> x632f062b8be60f94(["wb_income_class_historical_download_file"]):::queued
+    x40ccb8e1a54291c2(["wb_income_class_historical_raw"]):::queued --> xdb7f30fa4e7f18b5(["wb_income_class_historical_processed"]):::queued
+    x632f062b8be60f94(["wb_income_class_historical_download_file"]):::queued --> x40ccb8e1a54291c2(["wb_income_class_historical_raw"]):::queued
+    xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::skipped --> x695fa0d6d05420ec(["wb_lmic_lic_prompt"]):::skipped
+    
   end
 ```
 
@@ -189,3 +244,53 @@ directory
 ``` bash
 Rscript -e  "targets::tar_make()"
 ```
+
+## Authors and Contributors
+
+## Authors
+
+- [Dr Minh Cong
+  Tran](https://www.globalhealth.ox.ac.uk/our-researchers/minh-tran)
+- [Dr Ernest Guevarra](https://ernest.guevarra.io)
+
+## Contributors
+
+- [Dr Aisha
+  Adamu](https://www.tropicalmedicine.ox.ac.uk/team/aisha-adamu)
+- [Dr Parinda
+  Wattanasri](https://www.tropicalmedicine.ox.ac.uk/news/parinda-wattanasri-ihtm-2019-digital-vaccine-passports-in-thailand)
+- [Dr Ainura
+  Moldokmatova](https://www.tropicalmedicine.ox.ac.uk/team/ainura-moldokmatova)
+- [Dr Chit Su
+  Tinn](https://www.globalhealth.ox.ac.uk/our-researchers/chit-su-tinn)
+- Dr Fona Qorina
+- [Dr Proochista
+  Ariana](https://www.ndm.ox.ac.uk/team/proochista-ariana)
+
+## License
+
+All code in this project is released under a
+[GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text)
+license. All text in this project is released under a
+[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
+license. All data is released under a
+[CC0](https://creativecommons.org/public-domain/cc0/) license.
+
+## Citation
+
+If you use the code, text, and/or data provided in this repository in
+your work/research, please cite this work using the suggested
+appropriate citation provided in
+[CITATION.cff](https://github.com/OxfordIHTM/stroke-lmic-ollama/blob/main/CITATION.cff).
+
+## Community guidelines
+
+Feedback, bug reports and feature requests are welcome; file issues or
+seek support
+[here](https://github.com/OxfordIHTM/stroke-lmic-ollama/issues). If you
+would like to contribute to the project, please see our [contributing
+guidelines](https://github.com/OxfordIHTM/stroke-lmic-ollama/blob/main/.github/CONTRIBUTING.md).
+
+This project is released with a [Contributor Code of
+Conduct](https://github.com/OxfordIHTM/stroke-lmic-ollama/blob/main/.github/CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
