@@ -14,14 +14,18 @@ knitr::opts_chunk$set(
 # Mapping the Evidence Gaps for Stroke in Lower-Middle Income Countries (LMIC) and Low Income Countries (LIC) - Ollama workflow
 
 <!-- badges: start -->
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![License for code](https://img.shields.io/badge/license_for_code-GPL3.0-blue)](https://opensource.org/licenses/gpl-3.0.html)
+[![License for text](https://img.shields.io/badge/license_for_writing-CC_BY_4.0-blue)](https://creativecommons.org/licenses/by/4.0/)
+[![License for data](https://img.shields.io/badge/license_for_data-CC0-blue)](https://creativecommons.org/public-domain/cc0/)
+[![test targets workflow](https://github.com/OxfordIHTM/stroke-lmic-ollama/actions/workflows/test-targets-workflow.yml/badge.svg)](https://github.com/OxfordIHTM/stroke-lmic-ollama/actions/workflows/test-targets-workflow.yml)
 <!-- badges: end -->
 
 This repository is a template for a [`docker`](https://www.docker.com/get-started)-containerised, [`{targets}`](https://docs.ropensci.org/targets/)-based, [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)-enabled [`R`](https://cran.r-project.org/) workflow for mapping the evidence gaps for stroke in lower-middle income countries (LMICs) and low income countries (LICs) using open source large language models (LLMs) provided via [Ollama](https://ollama.com/).
 
 ## About the Project
 
-The burden of stroke is among the top five causes of mortality and morbidity in low-middle income countries (LMICs) and low income countries (LICs) and this burden is growing, yet evidence on contributing causes and the efficacy of interventions appears to be disproportionately generated in high-income settings for discrete population groups. This review maps existing evidence drawing on LMIC and LIC populations.
-
+The burden of stroke is among the top five causes of mortality and morbidity LMICs and LICs and this burden is growing, yet evidence on contributing causes and the efficacy of interventions appears to be disproportionately generated in high-income settings for discrete population groups. This review maps existing evidence drawing on LMIC and LIC populations.
 
 ## Repository Structure
 
@@ -72,15 +76,23 @@ This project requires the following system dependencies:
 
 * `poppler`
 
-This project depends on the [`{pdftools}`](https://poppler.freedesktop.org/) package which requires the `poppler` PDF rendering library to be installed first. For macOS and Windows users, installation of `{pdftools}` via the binary packages available from CRAN will deal with this requirement automatically. However, for Linux users, the `poppler` library will need to be installed first in order to be able to install `{pdftools}` from source. Installation of the `poppler` library for Linux is described [here](https://docs.ropensci.org/pdftools/#installation).
+This project depends on the [`{pdftools}`](https://docs.ropensci.org/pdftools/) package which requires the [`poppler`](https://poppler.freedesktop.org/) PDF rendering library to be installed first. For macOS and Windows users, installation of `{pdftools}` via the binary packages available from CRAN will deal with this requirement automatically. However, for Linux users, the `poppler` library will need to be installed first in order to be able to install `{pdftools}` from source. Installation of the `poppler` library for Linux is described [here](https://docs.ropensci.org/pdftools/#installation).
 
 * `quarto`
 
-This project uses the [`quarto`](https://quarto.org/) open-source scientific and technical publishing system. Instructions on how to download and install `quarto` can be found [here](https://quarto.org/docs/get-started/).
+This project uses v1.9.37 of [`quarto`](https://quarto.org/) open-source scientific and technical publishing system. Instructions on how to download and install `quarto` can be found [here](https://quarto.org/docs/get-started/).
 
 * `ollama`
 
-This project uses `ollama` to serve open large language modles (LLM) locally. Instructions on how to download and install `ollama` can be found [here](https://ollama.com/download). This project specifically uses the open source `DeepSeek-R1` model. Once `ollama` is installed, pull one of the `DeepSeek-R1` models that fits into your local machine. The workflow has been developed and implemented using the `deepseek-r1:671b` model which requires about 404GB of random access memory (RAM). We would recommend using the same model where possible or if your machine has enough memory resources.
+This project uses [`ollama`](https://ollama.com/) to serve open large language models locally. Instructions on how to download and install `ollama` can be found [here](https://ollama.com/download). This project specifically uses the following open source models available via `ollama`:
+
+**Model Name**    | **RAM size** | **Context Window**
+:-----------------|-------------:|-------------------:
+`gemma4:31b`      | 20GB         | 256,000 tokens
+`deepseek-r1:70b` | 43GB         | 128,000 tokens
+`qwen3.5:122b`    | 81GB         | 256,000 tokens
+ 
+Once `ollama` is installed, pull the mentioned models above into your local machine. Please note the required random access memory (RAM) sizes for each of these models and ensure that the machine you are using has enough RAM to fit these models.
 
 ### R version
 
@@ -126,3 +138,37 @@ or issue the following command in Terminal from within the project directory
 ```bash
 Rscript -e  "targets::tar_make()"
 ```
+
+## Authors and Contributors
+
+## Authors
+
+* [Dr Minh Cong Tran](https://www.globalhealth.ox.ac.uk/our-researchers/minh-tran)
+* [Dr Ernest Guevarra](https://ernest.guevarra.io)
+
+
+## Contributors
+
+* [Dr Aisha Adamu](https://www.tropicalmedicine.ox.ac.uk/team/aisha-adamu)
+* [Dr Parinda Wattanasri](https://www.tropicalmedicine.ox.ac.uk/news/parinda-wattanasri-ihtm-2019-digital-vaccine-passports-in-thailand)
+* [Dr Ainura Moldokmatova](https://www.tropicalmedicine.ox.ac.uk/team/ainura-moldokmatova)
+* [Dr Chit Su Tinn](https://www.globalhealth.ox.ac.uk/our-researchers/chit-su-tinn)
+* Dr Fona Qorina
+* [Dr Proochista Ariana](https://www.ndm.ox.ac.uk/team/proochista-ariana)
+
+
+## License
+
+All code in this project is released under a [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text) license. All text in this project is released under a [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/deed.en) license. All data is released under a [CC0](https://creativecommons.org/public-domain/cc0/) license.
+
+
+## Citation
+
+If you use the code, text, and/or data provided in this repository in your work/research, please cite this work using the suggested appropriate citation provided in [CITATION.cff](https://github.com/OxfordIHTM/stroke-lmic-ollama/blob/main/CITATION.cff).
+
+
+## Community guidelines
+
+Feedback, bug reports and feature requests are welcome; file issues or seek support [here](https://github.com/OxfordIHTM/stroke-lmic-ollama/issues). If you would like to contribute to the project, please see our [contributing guidelines](https://github.com/OxfordIHTM/stroke-lmic-ollama/blob/main/.github/CONTRIBUTING.md).
+
+This project is released with a [Contributor Code of Conduct](https://github.com/OxfordIHTM/stroke-lmic-ollama/blob/main/.github/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
