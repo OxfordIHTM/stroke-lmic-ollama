@@ -16,7 +16,7 @@ llm_screen_articles <- function(reviewer, query, type) {
 
 llm_parallel_screen_articles <- function(reviewer, query, type) {
   ellmer::parallel_chat_structured(
-    chat = reviewer, prompts = as.list(query), max_active = 20,
+    chat = reviewer, prompts = as.list(query),
     on_error = "continue", type = type
   )
 }
