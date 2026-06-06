@@ -176,6 +176,14 @@ gemma_ollama_targets <- tar_plan(
       query = screening_prompt[1:5],
       type = screening_output_type
     )
+  ),
+  tar_target(
+    name = gemma_screen_parallel,
+    command = llm_parallel_screen_articles(
+      reviewer = gemma_reviewer, 
+      query = screening_prompt,
+      type = screening_output_type
+    )
   )
 )
 
