@@ -164,12 +164,13 @@ gemma_ollama_targets <- tar_plan(
     name = gemma_reviewer,
     command = ellmer::chat_ollama(
       system_prompt = screening_context_prompt, 
-      model = gemma_model#,
-      # params = ellmer::params(
-      #   temperature = 0.3,
-      #   top_p = 0.95,
-      #   top_k = 64,
-      # )
+      model = gemma_model,
+      params = ellmer::params(
+        temperature = 0.3,
+        top_p = 0.95,
+        top_k = 64,
+      ),
+      echo = "none"
     )
   ),
   tar_target(
