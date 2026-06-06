@@ -18,23 +18,23 @@ data](https://img.shields.io/badge/license_for_data-CC0-blue)](https://creativec
 workflow](https://github.com/OxfordIHTM/stroke-lmic-ollama/actions/workflows/test-targets-workflow.yml/badge.svg)](https://github.com/OxfordIHTM/stroke-lmic-ollama/actions/workflows/test-targets-workflow.yml)
 <!-- badges: end -->
 
-This repository is a template for a
+This repository is for a
 [`docker`](https://www.docker.com/get-started)-containerised,
 [`{targets}`](https://docs.ropensci.org/targets/)-based,
 [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)-enabled
 [`R`](https://cran.r-project.org/) workflow for mapping the evidence
-gaps for stroke in lower-middle income countries (LMICs) and low income
-countries (LICs) using open source large language models (LLMs) provided
-via [Ollama](https://ollama.com/).
+gaps for stroke in middle income and low income countries using
+locally-deployed open source large language models (LLMs) provided via
+[Ollama](https://ollama.com/).
 
 ## About the Project
 
 The burden of stroke is among the top five causes of mortality and
-morbidity LMICs and LICs and this burden is growing, yet evidence on
-contributing causes and the efficacy of interventions appears to be
-disproportionately generated in high-income settings for discrete
-population groups. This review maps existing evidence drawing on LMIC
-and LIC populations.
+morbidity in middle and low income countries and this burden is growing,
+yet evidence on contributing causes and the efficacy of interventions
+appears to be disproportionately generated in high income country
+settings for discrete population groups. This review maps existing
+evidence drawing specifically from middle and low income countries.
 
 ## Repository Structure
 
@@ -109,18 +109,19 @@ This project requires the following system dependencies:
 
 This project depends on the
 [`{pdftools}`](https://docs.ropensci.org/pdftools/) package which
-requires the [`poppler`](https://poppler.freedesktop.org/) PDF rendering
-library to be installed first. For macOS and Windows users, installation
-of `{pdftools}` via the binary packages available from CRAN will deal
-with this requirement automatically. However, for Linux users, the
-`poppler` library will need to be installed first in order to be able to
-install `{pdftools}` from source. Installation of the `poppler` library
-for Linux is described
+requires the [`poppler`](https://poppler.freedesktop.org/) portable
+document format (PDF) rendering library to be installed first. For macOS
+and Windows users, installation of `{pdftools}` via the binary packages
+available from the [Comprehensive R Archive Network
+(CRAN)](https://cran.r-project.org) will deal with this requirement
+automatically. However, for Linux users, the `poppler` library will need
+to be installed first in order to be able to install `{pdftools}` from
+source. Installation of the `poppler` library for Linux is described
 [here](https://docs.ropensci.org/pdftools/#installation).
 
 - `quarto`
 
-This project uses v1.9.37 of [`quarto`](https://quarto.org/) open-source
+This project uses v1.9.37 of [`quarto`](https://quarto.org/) open source
 scientific and technical publishing system. Instructions on how to
 download and install `quarto` can be found
 [here](https://quarto.org/docs/get-started/).
@@ -130,8 +131,8 @@ download and install `quarto` can be found
 This project uses [`ollama`](https://ollama.com/) to serve open large
 language models locally. Instructions on how to download and install
 `ollama` can be found [here](https://ollama.com/download). This project
-specifically uses the following open source models available via
-`ollama`:
+uses `ollama` v0.30.6. This project specifically uses the following open
+source models available via `ollama`:
 
 | **Model Name**    | **RAM size** | **Context Window** |
 |:------------------|-------------:|-------------------:|
@@ -183,58 +184,66 @@ graph LR
   style Graph fill:#FFFFFF00,stroke:#000000;
   subgraph Graph
     direction LR
-    xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::skipped --> x9ce45b64b41c86a9(["country_list_prompt"]):::skipped
+    xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::queued --> x9ce45b64b41c86a9(["country_list_prompt"]):::queued
     x22ff41defec165cc(["deepseek_model"]):::queued --> xa7cacf98a8901b23(["deepseek_reviewer"]):::queued
-    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> xa7cacf98a8901b23(["deepseek_reviewer"]):::queued
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::queued --> xa7cacf98a8901b23(["deepseek_reviewer"]):::queued
     xa7cacf98a8901b23(["deepseek_reviewer"]):::queued --> x1cd58d886269795c["deepseek_test_screen_primary"]:::queued
     xf493b7d472ff5e59(["screening_prompt"]):::queued --> x1cd58d886269795c["deepseek_test_screen_primary"]:::queued
     x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x1cd58d886269795c["deepseek_test_screen_primary"]:::queued
-    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> xeb04618c59839428(["gemma_reviewer"]):::queued
     xfac2732c01b1bb30(["gemma_model"]):::queued --> xeb04618c59839428(["gemma_reviewer"]):::queued
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::queued --> xeb04618c59839428(["gemma_reviewer"]):::queued
+    xeb04618c59839428(["gemma_reviewer"]):::queued --> x5feebf3c115f0dfb(["gemma_screen_parallel"]):::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x5feebf3c115f0dfb(["gemma_screen_parallel"]):::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> x5feebf3c115f0dfb(["gemma_screen_parallel"]):::queued
+    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x96f0ea544e9b01e9(["gemma_test_screen_parallel"]):::queued
     xeb04618c59839428(["gemma_reviewer"]):::queued --> x96f0ea544e9b01e9(["gemma_test_screen_parallel"]):::queued
     xf493b7d472ff5e59(["screening_prompt"]):::queued --> x96f0ea544e9b01e9(["gemma_test_screen_parallel"]):::queued
-    x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x96f0ea544e9b01e9(["gemma_test_screen_parallel"]):::queued
-    xf493b7d472ff5e59(["screening_prompt"]):::queued --> xa29db1d3ac8283bc["gemma_test_screen_primary"]:::queued
     x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> xa29db1d3ac8283bc["gemma_test_screen_primary"]:::queued
     xeb04618c59839428(["gemma_reviewer"]):::queued --> xa29db1d3ac8283bc["gemma_test_screen_primary"]:::queued
-    x17ceb73139f385c0(["gpt_model"]):::completed --> x3b36e37aef5a26b7(["gpt_reviewer"]):::errored
-    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> x3b36e37aef5a26b7(["gpt_reviewer"]):::errored
-    xf493b7d472ff5e59(["screening_prompt"]):::queued --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
-    x3b36e37aef5a26b7(["gpt_reviewer"]):::errored --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> xa29db1d3ac8283bc["gemma_test_screen_primary"]:::queued
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::queued --> x3b36e37aef5a26b7(["gpt_reviewer"]):::queued
+    x17ceb73139f385c0(["gpt_model"]):::queued --> x3b36e37aef5a26b7(["gpt_reviewer"]):::queued
     x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
+    x3b36e37aef5a26b7(["gpt_reviewer"]):::queued --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
+    xf493b7d472ff5e59(["screening_prompt"]):::queued --> xd17f8bdde2abbccd["gpt_screen_primary"]:::queued
+    xd17f8bdde2abbccd["gpt_screen_primary"]:::queued --> xf58e01769c567c61(["gpt_screen_primary_processed"]):::queued
+    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> xf58e01769c567c61(["gpt_screen_primary_processed"]):::queued
+    xd596227685e2e430(["search_full_processed_flattened"]):::queued --> x30c73a44bf5b346b(["gpt_screen_primary_processed_flattened"]):::queued
+    xd17f8bdde2abbccd["gpt_screen_primary"]:::queued --> x30c73a44bf5b346b(["gpt_screen_primary_processed_flattened"]):::queued
+    x30c73a44bf5b346b(["gpt_screen_primary_processed_flattened"]):::queued --> xe41492e5750cecf7(["gpt_screen_primary_processed_flattened_csv"]):::queued
     x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x8a5a89d2558ba09e["gpt_test_screen_primary"]:::queued
+    x3b36e37aef5a26b7(["gpt_reviewer"]):::queued --> x8a5a89d2558ba09e["gpt_test_screen_primary"]:::queued
     xf493b7d472ff5e59(["screening_prompt"]):::queued --> x8a5a89d2558ba09e["gpt_test_screen_primary"]:::queued
-    x3b36e37aef5a26b7(["gpt_reviewer"]):::errored --> x8a5a89d2558ba09e["gpt_test_screen_primary"]:::queued
     xbd7be77f61000ca6(["qwen_model"]):::queued --> x2231fd7fbf277364(["qwen_reviewer"]):::queued
-    x60ed8e986a8cab2a(["screening_context_prompt"]):::completed --> x2231fd7fbf277364(["qwen_reviewer"]):::queued
+    x60ed8e986a8cab2a(["screening_context_prompt"]):::queued --> x2231fd7fbf277364(["qwen_reviewer"]):::queued
     x6fc9df893dbb0aaa(["screening_output_type"]):::queued --> x888498e3b5d283fb["qwen_test_screen_primary"]:::queued
     x2231fd7fbf277364(["qwen_reviewer"]):::queued --> x888498e3b5d283fb["qwen_test_screen_primary"]:::queued
     xf493b7d472ff5e59(["screening_prompt"]):::queued --> x888498e3b5d283fb["qwen_test_screen_primary"]:::queued
-    xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::queued --> x71f5d31f85b83ceb(["retraction_watch_data"]):::queued
-    xe03e263fab696ab7(["retraction_watch_data_url"]):::queued --> xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::queued
-    x188aa7ffce88bb98(["ris_file_paths"]):::queued --> x6ba4c23c2738dda8["ris_all"]:::queued
-    x6ba4c23c2738dda8["ris_all"]:::queued --> x4b7fcdd63fd7fb9a(["ris_all_file"]):::queued
-    x9ce45b64b41c86a9(["country_list_prompt"]):::skipped --> x60ed8e986a8cab2a(["screening_context_prompt"]):::completed
-    x695fa0d6d05420ec(["wb_lmic_lic_prompt"]):::skipped --> x60ed8e986a8cab2a(["screening_context_prompt"]):::completed
+    xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::skipped --> x71f5d31f85b83ceb(["retraction_watch_data"]):::skipped
+    xe03e263fab696ab7(["retraction_watch_data_url"]):::skipped --> xb4a9c9edd73bec9b(["retraction_watch_data_download_csv_file"]):::skipped
+    x188aa7ffce88bb98(["ris_file_paths"]):::skipped --> x6ba4c23c2738dda8["ris_all"]:::skipped
+    x6ba4c23c2738dda8["ris_all"]:::skipped --> x4b7fcdd63fd7fb9a(["ris_all_file"]):::skipped
+    x9ce45b64b41c86a9(["country_list_prompt"]):::queued --> x60ed8e986a8cab2a(["screening_context_prompt"]):::queued
+    x695fa0d6d05420ec(["wb_lmic_lic_prompt"]):::queued --> x60ed8e986a8cab2a(["screening_context_prompt"]):::queued
     x971c8918645ea4f3(["search_abstract"]):::queued --> xf493b7d472ff5e59(["screening_prompt"]):::queued
     x4946600ed43ea69a(["search_title"]):::queued --> xf493b7d472ff5e59(["screening_prompt"]):::queued
-    xcf6ddd66dde32d43(["search_full_processed"]):::queued --> x971c8918645ea4f3(["search_abstract"]):::queued
-    x2f7fdb4e976b16f9(["search_full_raw"]):::queued --> x2b5a5c97911afa83(["search_full_deduplicated"]):::queued
-    x71f5d31f85b83ceb(["retraction_watch_data"]):::queued --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::queued
-    x2b5a5c97911afa83(["search_full_deduplicated"]):::queued --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::queued
-    xe0f5c577fdbd2edb(["search_full_no_retractions"]):::queued --> xcf6ddd66dde32d43(["search_full_processed"]):::queued
-    xcf6ddd66dde32d43(["search_full_processed"]):::queued --> xd596227685e2e430(["search_full_processed_flattened"]):::queued
+    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> x971c8918645ea4f3(["search_abstract"]):::queued
+    x2f7fdb4e976b16f9(["search_full_raw"]):::skipped --> x2b5a5c97911afa83(["search_full_deduplicated"]):::skipped
+    x71f5d31f85b83ceb(["retraction_watch_data"]):::skipped --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped
+    x2b5a5c97911afa83(["search_full_deduplicated"]):::skipped --> xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped
+    xe0f5c577fdbd2edb(["search_full_no_retractions"]):::skipped --> xcf6ddd66dde32d43(["search_full_processed"]):::completed
+    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> xd596227685e2e430(["search_full_processed_flattened"]):::queued
     xd596227685e2e430(["search_full_processed_flattened"]):::queued --> x4b455536a354b302(["search_full_processed_flattened_csv"]):::queued
-    x4b7fcdd63fd7fb9a(["ris_all_file"]):::queued --> x2f7fdb4e976b16f9(["search_full_raw"]):::queued
-    x188aa7ffce88bb98(["ris_file_paths"]):::queued --> xfda738880e222baf["search_full_ris"]:::queued
-    xcf6ddd66dde32d43(["search_full_processed"]):::queued --> x4946600ed43ea69a(["search_title"]):::queued
-    x1d55ec70bfb3e5c3(["wb_income_class_current_url"]):::skipped --> x2ba514579f98d31e(["wb_income_class_current_download_file"]):::skipped
-    x04b0674ebb1d4224(["wb_income_class_current_raw"]):::skipped --> xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::skipped
-    x2ba514579f98d31e(["wb_income_class_current_download_file"]):::skipped --> x04b0674ebb1d4224(["wb_income_class_current_raw"]):::skipped
+    x4b7fcdd63fd7fb9a(["ris_all_file"]):::skipped --> x2f7fdb4e976b16f9(["search_full_raw"]):::skipped
+    x188aa7ffce88bb98(["ris_file_paths"]):::skipped --> xfda738880e222baf["search_full_ris"]:::queued
+    xcf6ddd66dde32d43(["search_full_processed"]):::completed --> x4946600ed43ea69a(["search_title"]):::queued
+    x1d55ec70bfb3e5c3(["wb_income_class_current_url"]):::queued --> x2ba514579f98d31e(["wb_income_class_current_download_file"]):::queued
+    x04b0674ebb1d4224(["wb_income_class_current_raw"]):::queued --> xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::queued
+    x2ba514579f98d31e(["wb_income_class_current_download_file"]):::queued --> x04b0674ebb1d4224(["wb_income_class_current_raw"]):::queued
     x2bea19edd962dff0(["wb_income_class_historical_url"]):::queued --> x632f062b8be60f94(["wb_income_class_historical_download_file"]):::queued
     x40ccb8e1a54291c2(["wb_income_class_historical_raw"]):::queued --> xdb7f30fa4e7f18b5(["wb_income_class_historical_processed"]):::queued
     x632f062b8be60f94(["wb_income_class_historical_download_file"]):::queued --> x40ccb8e1a54291c2(["wb_income_class_historical_raw"]):::queued
-    xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::skipped --> x695fa0d6d05420ec(["wb_lmic_lic_prompt"]):::skipped
+    xa43b3def3d49b4f7(["wb_income_class_current_processed"]):::queued --> x695fa0d6d05420ec(["wb_lmic_lic_prompt"]):::queued
     
   end
 ```
