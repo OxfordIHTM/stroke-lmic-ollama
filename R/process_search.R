@@ -2,6 +2,7 @@
 #' Process search results
 #' 
 #' @param search_df A `data.frame()`` object of the raw full search output.
+#' @param n_lots
 #' 
 #' @returns A `tibble::tibble()`/`data.frame()` object of the processed full
 #'   search.
@@ -12,7 +13,7 @@
 #' @export
 #'
 
-process_search <- function(search_df) {
+process_search <- function(search_df, n_lots = 500) {
   df <- search_df |>
     dplyr::mutate(
       language = simplify_list(language),
@@ -75,6 +76,29 @@ process_search <- function(search_df) {
       year, volume, issue, start_page, end_page, doi, url, link_to_full_text,
       proceedings_title, conference_date, company, source, chemicals,
       software_tools, funding_number, notes, XT
+    )
+  
+  whole_lots <- floor(nrow(df) / n_lots)
+  remainder_lot <- nrow(df) - (whole_lots * n_lots)
+  
+  df <- df |>
+    dplyr::mutate(
+      lotid = c(
+        paste0(
+          "LOT", 
+          stringr::str_pad(seq_len(whole_lots), width = 3, pad = 0)
+        ) |>
+          lapply(FUN = function(x) rep(x, n_lots)) |>
+          unlist(),
+        rep(
+          paste0(
+            "LOT", 
+            stringr::str_pad(string = whole_lots + 1, width = 3, pad = 0)
+          ), 
+          remainder_lot
+        )
+      ),
+      .after = uid
     )
   
   df
