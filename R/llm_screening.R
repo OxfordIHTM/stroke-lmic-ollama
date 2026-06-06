@@ -4,7 +4,7 @@
 #' 
 
 llm_screen_articles <- function(reviewer, query, type) {
-  out <- reviewer$chat_structured(query, type = type)
+  out <- reviewer$chat_structured(query, type = type, echo = "none")
 
   col_names <- names(out)
 

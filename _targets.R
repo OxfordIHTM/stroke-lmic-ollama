@@ -25,7 +25,7 @@ data_targets <- tar_plan(
   ),
   tar_target(
     name = search_full_raw,
-    command = synthesisr::read_refs(filename = ris_all_file)
+    command = read_ris_file(ris_file = ris_all_file)
   ),
   retraction_watch_data_url = "https://gitlab.com/crossref/retraction-watch-data/-/raw/main/retraction_watch.csv",
   tar_target(
@@ -227,6 +227,20 @@ gpt_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = map(screening_prompt)
+  ),
+  tar_target(
+    name = gpt_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed,
+      screen_results = gpt_screen_primary
+    )
+  ),
+  tar_target(
+    name = gpt_screen_primary_processed_flattened,
+    command = process_screening_primary(
+      search_df = search_full_processed_flattened,
+      screen_results = gpt_screen_primary
+    )
   )
 )
 
@@ -269,6 +283,13 @@ output_targets <- tar_plan(
     command = output_csv_file(
       df = search_full_processed_flattened,
       path = "data/search_full_processed_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = gpt_screen_primary_processed_flattened_csv,
+    command = output_csv_file(
+      df = gpt_screen_primary_processed_flattened,
+      path = "data/gpt_screen_primary_processed_flattened.csv"
     )
   )
 )

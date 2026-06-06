@@ -45,6 +45,7 @@ The project repository is structured as follows:
         |-- data/
         |-- data-raw/
         |-- outputs/
+        |-- prompts/
         |-- R/
         |-- reports
         |-- renv
@@ -65,6 +66,9 @@ The project repository is structured as follows:
 
 - `outputs/` contains compiled reports and figures produced by the
   workflow.
+
+- `prompts/` contains the various prompts in Markdown format engineered
+  for this project.
 
 - `R/` contains functions developed/created specifically for use in this
   workflow.
@@ -134,11 +138,15 @@ specifically uses the following open source models available via
 | `gemma4:31b`      |         20GB |     256,000 tokens |
 | `deepseek-r1:70b` |         43GB |     128,000 tokens |
 | `qwen3.5:122b`    |         81GB |     256,000 tokens |
+| `gpt-oss:120b`    |         65GB |     128,000 tokens |
 
 Once `ollama` is installed, pull the mentioned models above into your
 local machine. Please note the required random access memory (RAM) sizes
 for each of these models and ensure that the machine you are using has
 enough RAM to fit these models.
+
+For this project, the team used a **Mac Studio M3 Ulta with a 32-core
+CPU, 80-core GPU, and a 512GB RAM**.
 
 ### R version
 
@@ -242,7 +250,7 @@ or issue the following command in Terminal from within the project
 directory
 
 ``` bash
-Rscript -e  "targets::tar_make()"
+Rscript -e "targets::tar_make()"
 ```
 
 ## Authors and Contributors
