@@ -166,7 +166,7 @@ gemma_ollama_targets <- tar_plan(
       system_prompt = screening_context_prompt, 
       model = gemma_model,
       params = ellmer::params(
-        temperature = 0.3,
+        temperature = 1,
         top_p = 0.95,
         top_k = 64,
       ),
@@ -181,6 +181,15 @@ gemma_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = slice(screening_prompt, 1:20)
+  ),
+  tar_target(
+    name = gemma_screen_primary,
+    command = llm_screen_articles(
+      reviewer = gemma_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = map(screening_prompt)
   ),
   tar_target(
     name = gemma_test_screen_parallel,
