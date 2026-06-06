@@ -121,7 +121,7 @@ source. Installation of the `poppler` library for Linux is described
 
 - `quarto`
 
-This project uses v1.9.37 of [`quarto`](https://quarto.org/) open source
+This project uses v1.9.38 of [`quarto`](https://quarto.org/) open source
 scientific and technical publishing system. Instructions on how to
 download and install `quarto` can be found
 [here](https://quarto.org/docs/get-started/).
