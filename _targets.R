@@ -144,6 +144,13 @@ llm_prompt_targets <- tar_plan(
     )
   ),
   tar_target(
+    name = screening_prompt_batched,
+    command = batch_screening_prompt(
+      screening_prompt = screening_prompt,
+      search_full_processed = search_full_processed
+    )
+  ),
+  tar_target(
     name = screening_output_type,
     command = llm_create_screening_type()
   )
@@ -181,9 +188,10 @@ gemma_ollama_targets <- tar_plan(
     name = gemma_screen_parallel,
     command = llm_parallel_screen_articles(
       reviewer = gemma_reviewer, 
-      query = screening_prompt,
+      query = screening_prompt_batched,
       type = screening_output_type
-    )
+    ),
+    pattern = map(screening_prompt_batched)
   )
 )
 
