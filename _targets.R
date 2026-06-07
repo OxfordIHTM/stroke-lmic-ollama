@@ -144,6 +144,13 @@ llm_prompt_targets <- tar_plan(
     )
   ),
   tar_target(
+    name = screening_prompt_batched,
+    command = batch_screening_prompt(
+      screening_prompt = screening_prompt,
+      search_full_processed = search_full_processed
+    )
+  ),
+  tar_target(
     name = screening_output_type,
     command = llm_create_screening_type()
   )
@@ -170,6 +177,15 @@ gemma_ollama_targets <- tar_plan(
     pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
+    name = gemma_screen_primary,
+    command = llm_screen_articles(
+      reviewer = gemma_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = map(screening_prompt)
+  ),
+  tar_target(
     name = gemma_test_screen_parallel,
     command = llm_parallel_screen_articles(
       reviewer = gemma_reviewer, 
@@ -180,7 +196,7 @@ gemma_ollama_targets <- tar_plan(
   tar_target(
     name = gemma_screen_parallel,
     command = llm_parallel_screen_articles(
-      reviewer = gemma_reviewer, 
+      reviewer = gemma_reviewer,
       query = screening_prompt,
       type = screening_output_type
     )

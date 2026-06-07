@@ -21,3 +21,14 @@ interpolate_screening_prompt <- function(search_title, search_abstract) {
     search_abstract = search_abstract
   )
 }
+
+
+#'
+#' Batch screening prompt
+#' 
+
+batch_screening_prompt <- function(screening_prompt, search_full_processed) {
+  f <- search_full_processed[["lotid"]]
+
+  split(x = screening_prompt, f = f)
+}
