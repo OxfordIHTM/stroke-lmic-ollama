@@ -36,17 +36,6 @@ llm_create_screening_type <- function() {
       topic = ellmer::type_boolean(
         description = "Is the study regarding stroke burden (such as prevalence, incidence, disability-adjusted life years, quality-adjusted life years, disability, death, hospitalisation) OR types of stroke (such as ischaemic stroke, haemorrhagic stroke) OR risk factors for stroke OR interventions for stroke."
       )
-    ),
-    publication_type = ellmer::type_boolean(
-      description = "Is the study a primary study with a research design such as a cohort study, case-control study, cross-sectional study, or interventional studies"
-    ),
-    topic_name = ellmer::type_array(
-      ellmer::type_string(
-        description = "Study topic about stroke", required = FALSE
-      )
-    ),
-    topic = ellmer::type_boolean(
-      description = "Is the study regarding stroke burden (such as prevalence, incidence, disability-adjusted life years, quality-adjusted life years, disability, death, hospitalisation) OR types of stroke (such as ischaemic stroke, haemorrhagic stroke) OR risk factors for stroke OR interventions for stroke."
     )
   )
 }
