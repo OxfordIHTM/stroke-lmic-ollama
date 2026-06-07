@@ -6,7 +6,13 @@
 llm_screen_articles <- function(reviewer, query, type) {
   reviewer <- reviewer$set_turns(list())
 
-  reviewer$chat_structured(query, type = type)
+  out <- reviewer$chat_structured(query, type = type)
+
+  out |>
+    dplyr::mutate(
+      uid = stringr::str_extract(string = query, pattern = "[A-Z]{2}[0-9]{6}"),
+      .before = age_context
+    )
 }
 
 

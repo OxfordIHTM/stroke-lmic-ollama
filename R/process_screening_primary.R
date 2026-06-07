@@ -15,18 +15,9 @@
 
 process_screening_primary <- function(search_df,
                                       screen_results) {
-  tibble::tibble(
-    search_df, 
-    screen_results |>
-      dplyr::mutate(
-        dplyr::across(
-          .cols = dplyr::everything(), .fns = function(x) unlist(x)
-        )
-      ) |>
-      dplyr::rename(
-        type = publication_type
-      )
-  ) |>
+  search_df |>
+    dplyr::select(uid, lotid, title, abstract) |>
+    dplyr::left_join(screen_results, by = "uid") |>
     dplyr::mutate(
       include_primary = dplyr::case_when(
         population & geography & type & topic ~ TRUE,

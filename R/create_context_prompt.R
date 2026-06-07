@@ -22,11 +22,9 @@ create_screening_context_prompt <- function(wb_lmic_lic_prompt) {
 #' Interpolate screening context prompt
 #' 
 
-interpolate_screening_context_prompt <- function(country_list_prompt,
-                                                 wb_lmic_lic_prompt) {
+interpolate_screening_context_prompt <- function(wb_mic_lic_prompt) {
   ellmer::interpolate_file(
     path = "prompts/prompt-screening-context.md",
-    country_list_prompt = country_list_prompt,
-    wb_lmic_lic_prompt = wb_lmic_lic_prompt
+    wb_mic_lic_prompt = wb_mic_lic_prompt
   )
 }

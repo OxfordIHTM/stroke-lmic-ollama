@@ -10,13 +10,13 @@ llm_create_screening_type <- function() {
         description = "Age group or age characteristics of the study population or participants. This can be terms such as adult or adults or geriatric or child or children or pediatric or paediatric. This can also be descriptions such as a range from one age to another such as 10-15 years or 10 to 15 years or 18 years and older or >= 18 years."
       ),
       age_criteria = ellmer::type_boolean(
-        description = "Is the study about a population of adults?"
+        description = "Is the study about a population of adults based on age_context?"
       ),
       geo_context = ellmer::type_string(
-        description = "Name of the country where the study was conducted or the country or countries in which the study population or participants are from" 
+        description = "Name of the country where the study was conducted or the country or countries in which the study population or participants are from"
       ),
       geo_criteria = ellmer::type_boolean(
-        description = "Is the study conducted in a country classified as low-middle income or low income based on World Bank income classification?"
+        description = "Is the study conducted in a country classified as upper-middle income, lower-middle income or low income based on World Bank income classification?"
       ),
       study_type_context = ellmer::type_array(
         ellmer::type_string(description = "Type of study")
