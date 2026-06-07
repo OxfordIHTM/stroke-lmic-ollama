@@ -174,7 +174,8 @@ gemma_ollama_targets <- tar_plan(
       query = screening_prompt,
       type = screening_output_type
     ),
-    pattern = slice(screening_prompt, 1:20)
+    pattern = slice(screening_prompt, 1:20),
+    iteration = "list"
   ),
   tar_target(
     name = gemma_screen_primary,

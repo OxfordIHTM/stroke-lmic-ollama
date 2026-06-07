@@ -6,7 +6,7 @@
 llm_screen_articles <- function(reviewer, query, type) {
   reviewer <- reviewer$set_turns(list())
 
-  reviewer$chat_structured(query, type = type)
+  reviewer$chat_structured(query, type = type, echo = "none", convert = FALSE)
 }
 
 
