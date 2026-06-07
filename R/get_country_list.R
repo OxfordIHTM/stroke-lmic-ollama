@@ -7,10 +7,10 @@
 
 get_country_list <- function(wb_df) {
   wb_df |>
-    dplyr::filter(income_group %in% c("Lower middle income", "Lower income")) |>
+    dplyr::filter(income_group != "High income") |>
     dplyr::pull(economy) |>
-    paste(collapse = "; ") |>
-    paste0(".")
+    (\(x) paste0("  - ", x))() |>
+    cat(sep = "\n")
 }
 
 

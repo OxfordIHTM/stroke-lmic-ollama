@@ -109,6 +109,10 @@ processing_targets <- tar_plan(
     command = flatten_search(search_full_processed)
   ),
   tar_target(
+    name = search_id,
+    command = get_id(search_full_processed)
+  ),
+  tar_target(
     name = search_title,
     command = get_title(search_full_processed)
   ),
@@ -126,7 +130,7 @@ llm_prompt_targets <- tar_plan(
     command = get_all_country_list(wb_df = wb_income_class_current_processed)
   ),
   tar_target(
-    name = wb_lmic_lic_prompt,
+    name = wb_mic_lic_prompt,
     command = get_country_list(wb_df = wb_income_class_current_processed)
   ),
   tar_target(
@@ -139,6 +143,7 @@ llm_prompt_targets <- tar_plan(
   tar_target(
     name = screening_prompt,
     command = interpolate_screening_prompt(
+      search_id = search_id,
       search_title = search_title, 
       search_abstract = search_abstract
     )
@@ -221,6 +226,15 @@ deepseek_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = slice(screening_prompt, 1:20)
+  ),
+  tar_target(
+    name = deepseek_screen_primary,
+    command = llm_screen_articles(
+      reviewer = deepseek_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = map(screening_prompt)
   )
 )
 
@@ -286,6 +300,15 @@ qwen_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = slice(screening_prompt, 1:20)
+  ),
+  tar_target(
+    name = qwen_screen_primary,
+    command = llm_screen_articles(
+      reviewer = qwen_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = map(screening_prompt)
   )
 )
 
@@ -307,6 +330,15 @@ llama_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = slice(screening_prompt, 1:20)
+  ),
+  tar_target(
+    name = llama_screen_primary,
+    command = llm_screen_articles(
+      reviewer = llama_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = map(screening_prompt)
   )
 )
 
