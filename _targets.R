@@ -292,7 +292,7 @@ qwen_ollama_targets <- tar_plan(
 
 ## Ollama llama4 LLM targets ----
 llama_ollama_targets <- tar_plan(
-  qwen_model = "llama4:16x17b",
+  llama_model = "llama4:16x17b",
   tar_target(
     name = llama_reviewer,
     command = ellmer::chat_ollama(
