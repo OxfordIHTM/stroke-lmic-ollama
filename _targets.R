@@ -189,19 +189,10 @@ gemma_ollama_targets <- tar_plan(
     pattern = map(screening_prompt)
   ),
   tar_target(
-    name = gemma_test_screen_parallel,
-    command = llm_parallel_screen_articles(
-      reviewer = gemma_reviewer, 
-      query = screening_prompt[1:20],
-      type = screening_output_type
-    )
-  ),
-  tar_target(
-    name = gemma_screen_parallel,
-    command = llm_parallel_screen_articles(
-      reviewer = gemma_reviewer,
-      query = screening_prompt,
-      type = screening_output_type
+    name = gemma_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed,
+      screen_results = gemma_screen_primary
     )
   )
 )
@@ -233,6 +224,13 @@ deepseek_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = map(screening_prompt)
+  ),
+  tar_target(
+    name = deepseek_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed,
+      screen_results = deepseek_screen_primary
+    )
   )
 )
 
@@ -273,10 +271,7 @@ gpt_ollama_targets <- tar_plan(
   ),
   tar_target(
     name = gpt_screen_primary_processed_flattened,
-    command = process_screening_primary(
-      search_df = search_full_processed_flattened,
-      screen_results = gpt_screen_primary
-    )
+    command = flatten_search(processed_df = gpt_screen_primary_processed)
   )
 )
 
@@ -307,6 +302,13 @@ qwen_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = map(screening_prompt)
+  ),
+  tar_target(
+    name = qwen_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed,
+      screen_results = qwen_screen_primary
+    )
   )
 )
 
@@ -337,6 +339,13 @@ llama_ollama_targets <- tar_plan(
       type = screening_output_type
     ),
     pattern = map(screening_prompt)
+  ),
+  tar_target(
+    name = llama_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed,
+      screen_results = llama_screen_primary
+    )
   )
 )
 

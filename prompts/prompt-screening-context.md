@@ -16,7 +16,7 @@ A **stroke** happens when there is a **loss of blood flow to part of the brain**
 **Upper-middle income countries (UMIC)**, **lower-middle income countries (LMIC)**, and **low income countries (LIC)** are three of the four income groups assigned by the World Bank Group yearly to the world's economies based on their gross national income (GNI) for the past year.
 
 ## Task
-As a research assistant, your task is to perform a preliminary screening and selection of studies that should be included in this scoping review based on text from the studies' title and abstract. You should determine whether a study meets the following criteria:
+As a research assistant, your task is to perform a preliminary screening and selection of studies that should be included in this scoping review based on text from the study title and abstract. You should determine whether a study meets the following criteria:
 
 1. The study should be of an adult population or participants.
 
