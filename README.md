@@ -147,7 +147,7 @@ local machine. Please note the required random access memory (RAM) sizes
 for each of these models and ensure that the machine you are using has
 enough RAM to fit these models.
 
-For this project, the team used a **Mac Studio M3 Ulta with a 32-core
+For this project, the team used a **Mac Studio M3 Ultra with a 32-core
 CPU, 80-core GPU, and a 512GB RAM**.
 
 ### R version

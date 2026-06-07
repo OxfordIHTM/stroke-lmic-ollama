@@ -13,8 +13,10 @@ llm_create_screening_type <- function() {
       age_criteria = ellmer::type_boolean(
         description = "Is the study about a population of adults based on age_context?"
       ),
-      geo_context = ellmer::type_string(
-        description = "Name of the country where the study was conducted or the country or countries in which the study population or participants are from" 
+      geo_context = ellmer::type_array(
+        ellmer::type_string(
+          description = "Name of the country where the study was conducted or the country or countries in which the study population or participants are from" 
+        )
       ),
       geo_criteria = ellmer::type_boolean(
         description = "Is the study conducted in a country classified as upper-middle income, lower-middle income or low income based on World Bank income classification?"
