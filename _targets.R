@@ -189,7 +189,7 @@ gemma_ollama_targets <- tar_plan(
     name = gemma_test_screen_parallel,
     command = llm_parallel_screen_articles(
       reviewer = gemma_reviewer, 
-      query = screening_prompt[1:5],
+      query = screening_prompt[1:20],
       type = screening_output_type
     )
   ),
