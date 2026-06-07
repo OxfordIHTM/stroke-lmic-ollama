@@ -95,14 +95,14 @@ Title: Cardiovascular diseases among people living with HIV/AIDS in Ethiopia: A 
 Abstract: Background Human Immunodeficiency Virus (HIV)/ Acquired Immunodeficiency Syndrome (AIDS) remains a significant burden in Ethiopia. People living with HIV/AIDS (PLWHA) are at increased risk of cardiovascular diseases due to both the virus and the side effects of antiretroviral therapy. Despite a growing body of research on cardiovascular diseases in PLWHA in Ethiopia, no review has synthesised the available evidence. This scoping review aims to summarise the existing literature on cardiovascular diseases among PLWHA in Ethiopia. Methods This scoping review followed the Arksey and O'Malley (2005) framework, with enhancements from Levac et al. (2010). A systematic search was conducted across six electronic databases (PubMed, EMBASE, ProQuest, Global Index Medicus, and Web of Science) in November 2023 and updated in March 2026. Studies on cardiovascular diseases among PLWHA in Ethiopia were included. Two reviewers independently screened titles, abstracts, and full texts. A data extraction template was used, and findings were synthesised narratively. The selection process was documented using a PRISMA flow diagram. Results Twenty-six studies were included, with nearly two-thirds (61.5%, n = 16) focused on hypertension. The prevalence of hypertension among PLWHA in Ethiopia ranged from 11.0 to 41.3%. Factors associated with hypertension included male gender, old age, rural residence, alcohol consumption, smoking, family history, low physical activity, obesity, and HAART duration/type. Other cardiovascular conditions studied included ischemic stroke, dilated cardiomyopathy, ECG abnormalities, atherosclerotic cardiovascular disease, and pericardial effusion. Most studies were cross-sectional and institution-based. Conclusion This review highlights the limited yet growing evidence on cardiovascular diseases among PLWHA in Ethiopia, with a predominant focus on hypertension. Future research should use more robust study designs, such as longitudinal and interventional studies, encompass a broader range of cardiovascular diseases, and include community-based studies to better understand the prevalence and burden of cardiovascular diseases among PLWHA in Ethiopia.Copyright © 2026 Errega et al. This is an open access article distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
 
 {
-  "age_context": null,
-  "age_criteria": true,
+  "age_context": NULL,
+  "age_criteria": TRUE,
   "geography_context": "Ethiopia",
-  "geography_criteria": true,
+  "geography_criteria": TRUE,
   "study_type_context": "scoping review",
-  "study_type_criteria": false,
+  "study_type_criteria": FALSE,
   "topic_context": "prevalence",
-  "topic_criteria": true
+  "topic_criteria": TRUE
 }
 
 ### Example 2
@@ -112,13 +112,13 @@ Title: Atrial fibrillation and associated cardiovascular disorders in adults wit
 Abstract: Introduction: Atrial fibrillation (AF) is a major cardiovascular complication of thyrotoxicosis but its burden and predictors are poorly described in sub-Saharan Africa. We assessed the prevalence, clinical course, and predictors of AF and related cardiovascular complications in adults with hyperthyroidism at two tertiary hospitals in Addis Ababa, Ethiopia. Method(s): Retrospective cohort study of adults (>= 18 years) with biochemically confirmed hyperthyroidism managed between April 2019 and September 2024. Clinical, ECG and echocardiographic data were abstracted from records; primary outcomes were AF at presentation and persistent AF on follow-up. Associations were examined with multivariable logistic regression. Result(s): Of 174 patients (mean age 41.2 +/- 11.6 years; 91.9% female), 43 (24.7%) had AF at presentation and 34 (19.5%) remained in persistent AF. Thromboembolic events (echocardiographic contrast n = 2; LV thrombus n = 1; ischemic stroke n = 1) occurred only in persistent AF. Independent predictors of AF included left atrial enlargement (LA >= 3.8 cm; AOR 8.6, 95% CI 1.9-38.5), NYHA class III-IV at presentation (AOR 8.9, 95% CI 2.5-33.0), diastolic dysfunction (AOR 5.4, 95% CI 1.4-21.5) and elevated baseline free T3 (AOR 12.5, 95% CI 3.1-50.2). Most patients received propylthiouracil (97.7%) and beta-blockers; anticoagulation was infrequently prescribed (n = 3). Biochemical normalization was slow, and AF was associated with delayed thyroid hormone normalization. Conclusion(s): In this Ethiopian tertiary-care cohort, AF was common and frequently persistent; elevated thyroid hormone levels and atrial structural changes were strong predictors. Early ECG and targeted echocardiography, prompt restoration of euthyroidism, and guideline-directed anticoagulation for high-risk patients are warranted to reduce thromboembolic and heart-failure complications.Copyright © The Author(s) 2026.
 
 {
-  "age_context": null,
-  "age_criteria": true,
+  "age_context": NULL,
+  "age_criteria": TRUE,
   "geography_context": "Ethiopia",
-  "geography_criteria": true,
+  "geography_criteria": TRUE,
   "study_type_context": "retrospective cohort study",
-  "study_type_criteria": true,
+  "study_type_criteria": TRUE,
   "topic_context": "risk factors, morbidity",
-  "topic_criteria": true
+  "topic_criteria": TRUE
 }
 

@@ -4,21 +4,23 @@
 #' 
 
 llm_screen_articles <- function(reviewer, query, type) {
-  out <- reviewer$chat_structured(query, type = type)
+  reviewer <- reviewer$set_turns(list())
 
-  # col_names <- names(out)
-
-  # matrix(data = out, nrow = 1, ncol = 8, byrow = TRUE) |>
-  #   data.frame() |>
-  #   stats::setNames(nm = col_names)
-
-  out
+  reviewer$chat_structured(query, type = type)
 }
 
 
+#'
+#' 
+#' 
+#' 
+
 llm_parallel_screen_articles <- function(reviewer, query, type) {
+  reviewer <- reviewer$set_turns(list())
+
   ellmer::parallel_chat_structured(
-    chat = reviewer, prompts = as.list(query),
+    chat = reviewer, prompts = query,
     on_error = "continue", type = type
-  )
+  ) |>
+    dplyr::bind_rows()
 }
