@@ -6,7 +6,7 @@ llm_create_screening_type <- function() {
   ellmer::type_array(
     ellmer::type_object(
       "Criteria for journal articles on stroke to include in the scoping review",
-      uid = ellmer::type_string(description = "Unique identifier"),
+      uid = ellmer::type_string(description = "Unique Identifier with 8 characters the first two of which are either EB, GH, or ML and the last 6 are numbers."),
       age_context = ellmer::type_string(
         description = "Age group or age characteristics of the study population or participants. This can be terms such as adult or adults or geriatric or child or children or pediatric or paediatric. This can also be descriptions such as a range from one age to another such as 10-15 years or 10 to 15 years or 18 years and older or >= 18 years."
       ),
