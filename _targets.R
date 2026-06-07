@@ -290,6 +290,29 @@ qwen_ollama_targets <- tar_plan(
 )
 
 
+## Ollama llama4 LLM targets ----
+llama_ollama_targets <- tar_plan(
+  llama_model = "llama4:16x17b",
+  tar_target(
+    name = llama_reviewer,
+    command = ellmer::chat_ollama(
+      system_prompt = screening_context_prompt, model = llama_model
+    )
+  ),
+  tar_target(
+    name = llama_test_screen_primary,
+    command = llm_screen_articles(
+      reviewer = llama_reviewer,
+      query = screening_prompt,
+      type = screening_output_type
+    ),
+    pattern = slice(screening_prompt, 1:20)
+  )
+)
+
+
+
+
 ## Analysis targets ----
 analysis_targets <- tar_plan(
   
