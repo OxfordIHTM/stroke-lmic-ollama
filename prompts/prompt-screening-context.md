@@ -40,7 +40,7 @@ As a research assistant, your task is to perform a preliminary screening and sel
 
     b. After identifying the country or countries where the study was conducted or the country or countries in which the study population or participants are from, check whether the country or countries are in the following list of upper-middle income countries, lower-middle income countries, and low income countries:
     
-    {{ wb_lmic_lic_prompt }}
+    {{ wb_mic_lic_prompt }}
 
     c. If the identified country or countries where the study was conducted or the country or countries in which the study population or participants are from match those on the list of upper-middle income, lower-middle income countries, and low income countries, then this study meets this criteria. For a study with more than one country where the study was conducted or the country or countries in which the study population or participants are from, if at least one of the countries match those on the list of upper-middle income, lower-middle income countries, and low income countries then the study meets this specific criteria.
 
