@@ -2491,6 +2491,36 @@
       "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
       "Repository": "CRAN"
     },
+    "parallelly": {
+      "Package": "parallelly",
+      "Version": "1.47.0",
+      "Source": "Repository",
+      "Title": "Enhancing the 'parallel' Package",
+      "Imports": [
+        "parallel",
+        "tools",
+        "utils"
+      ],
+      "Suggests": [
+        "commonmark",
+        "base64enc"
+      ],
+      "VignetteBuilder": "parallelly",
+      "Authors@R": "c( person(\"Henrik\", \"Bengtsson\", role = c(\"aut\", \"cre\", \"cph\"), email = \"henrikb@braju.com\", comment = c(ORCID = \"0000-0002-7579-5165\")), person(\"Mike\", \"Cheng\", role = c(\"ctb\"), email = \"mikefc@coolbutuseless.com\") )",
+      "Description": "Utility functions that enhance the 'parallel' package and support the built-in parallel backends of the 'future' package.  For example, availableCores() gives the number of CPU cores available to your R process as given by the operating system, 'cgroups' and Linux containers, R options, and environment variables, including those set by job schedulers on high-performance compute clusters. If none is set, it will fall back to parallel::detectCores(). Another example is makeClusterPSOCK(), which is backward compatible with parallel::makePSOCKcluster() while doing a better job in setting up remote cluster workers without the need for configuring the firewall to do port-forwarding to your local computer.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "ByteCompile": "TRUE",
+      "URL": "https://parallelly.futureverse.org, https://github.com/futureverse/parallelly",
+      "BugReports": "https://github.com/futureverse/parallelly/issues",
+      "Language": "en-US",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3",
+      "NeedsCompilation": "yes",
+      "Author": "Henrik Bengtsson [aut, cre, cph] (ORCID: <https://orcid.org/0000-0002-7579-5165>), Mike Cheng [ctb]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
+      "Repository": "CRAN"
+    },
     "pdftools": {
       "Package": "pdftools",
       "Version": "3.9.0",
@@ -3324,6 +3354,46 @@
       "NeedsCompilation": "yes",
       "Author": "Charlie Gao [aut, cre] (ORCID: <https://orcid.org/0000-0002-0750-061X>), Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>), Hibiki AI Limited [cph], The Mbed TLS Contributors [cph] (SHA-3, SHA-256 and base64 code from Mbed TLS), Red Hat, Inc. [cph] (SipHash code from c-siphash), Luke Dashjr [cph] (Base58 code from libbase58)",
       "Maintainer": "Charlie Gao <charlie.gao@posit.co>",
+      "Repository": "CRAN"
+    },
+    "sleacr": {
+      "Package": "sleacr",
+      "Version": "0.1.3",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Simplified Lot Quality Assurance Sampling Evaluation of Access and Coverage (SLEAC) Tools",
+      "Authors@R": "c( person(\"Ernest\", \"Guevarra\",  comment = c(ORCID = \"0000-0002-4887-4415\"),  email = \"ernest@guevarra.io\",  role = c(\"aut\", \"cre\", \"cph\")), person(\"Mark\", \"Myatt\",  comment = c(ORCID = \"0000-0003-1119-1474\"), email = \"mark@brixtonhealth.com\",  role = c(\"aut\", \"cph\")))",
+      "Description": "In the recent past, measurement of coverage has been mainly through two-stage cluster sampled surveys either as part of a nutrition assessment or through a specific coverage survey known as Centric Systematic Area Sampling (CSAS). However, such methods are resource intensive and often only used for final programme evaluation meaning results arrive too late for programme adaptation. SLEAC, which stands for Simplified Lot Quality Assurance Sampling Evaluation of Access and Coverage, is a low resource method designed specifically to address this limitation and is used regularly for monitoring, planning and importantly, timely improvement to programme quality, both for agency and Ministry of Health (MoH) led programmes. SLEAC is designed to complement the Semi-quantitative Evaluation of Access and Coverage (SQUEAC) method. This package provides functions for use in conducting a SLEAC assessment.",
+      "License": "GPL (>= 3)",
+      "Depends": [
+        "R (>= 4.2.0)"
+      ],
+      "Imports": [
+        "cli",
+        "methods",
+        "parallel",
+        "parallelly",
+        "stats"
+      ],
+      "Suggests": [
+        "covr",
+        "knitr",
+        "rmarkdown",
+        "spelling",
+        "testthat (>= 3.0.0)",
+        "tibble"
+      ],
+      "Encoding": "UTF-8",
+      "Language": "en-GB",
+      "LazyData": "true",
+      "RoxygenNote": "7.3.3",
+      "URL": "https://nutriverse.io/sleacr/, https://github.com/nutriverse/sleacr",
+      "BugReports": "https://github.com/nutriverse/sleacr/issues",
+      "Config/testthat/edition": "3",
+      "VignetteBuilder": "knitr",
+      "NeedsCompilation": "no",
+      "Author": "Ernest Guevarra [aut, cre, cph] (ORCID: <https://orcid.org/0000-0002-4887-4415>), Mark Myatt [aut, cph] (ORCID: <https://orcid.org/0000-0003-1119-1474>)",
+      "Maintainer": "Ernest Guevarra <ernest@guevarra.io>",
       "Repository": "CRAN"
     },
     "stringdist": {
