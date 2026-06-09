@@ -62,3 +62,8 @@ library(tesseract)
 
 library(RefManageR)
 library(synthesisr)
+
+
+## Load packages for LQAS functions ----
+
+library(sleacr)

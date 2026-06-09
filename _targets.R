@@ -358,6 +358,20 @@ analysis_targets <- tar_plan(
 )
 
 
+## LQAS testing targets ----
+lqas_targets <- tar_plan(
+  lqas_lower = 0.7,
+  lqas_upper = 0.9,
+  tar_target(
+    name = lqas_sample,
+    command = lqas_get_sample(
+      df = search_full_processed, dLower = lqas_lower, dUpper = lqas_upper
+    )
+  )
+)
+
+
+
 ## Output targets ----
 output_targets <- tar_plan(
   tar_target(
@@ -391,6 +405,10 @@ report_targets <- tar_plan(
 deploy_targets <- tar_plan(
   
 )
+
+
+## Set seed ----
+set.seed(1977)
 
 
 ## List targets ----
