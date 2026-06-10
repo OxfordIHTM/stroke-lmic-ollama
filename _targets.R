@@ -156,7 +156,16 @@ llm_prompt_targets <- tar_plan(
   tar_target(
     name = screening_output_type,
     command = llm_create_screening_type()
-  )
+  ),
+  tar_target(
+    name = llm_parameters,
+    command = ellmer::params(
+        temperature = 0.3,
+        top_p = 0.95,
+        top_k = 64,
+        reasoning_effort = "low",
+        reasoning_tokens = 0
+    )
 )
 
 
@@ -168,7 +177,7 @@ gemma_ollama_targets <- tar_plan(
     command = ellmer::chat_ollama(
       system_prompt = screening_context_prompt, 
       model = gemma_model,
-      params = ellmer::params(reasoning_effort = "low")
+      params = llm_parameters
     )
   ),
   tar_target(
