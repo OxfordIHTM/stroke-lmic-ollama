@@ -20,7 +20,7 @@ process_screening_primary <- function(search_df,
     dplyr::left_join(screen_results, by = "uid") |>
     dplyr::mutate(
       include_primary = dplyr::case_when(
-        population & geography & type & topic ~ TRUE,
+        age_criteria & geo_criteria & study_type_criteria & topic_criteria ~ TRUE,
         .default = FALSE
       )
     )
