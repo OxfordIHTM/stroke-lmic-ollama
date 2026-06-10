@@ -167,7 +167,8 @@ gemma_ollama_targets <- tar_plan(
     name = gemma_reviewer,
     command = ellmer::chat_ollama(
       system_prompt = screening_context_prompt, 
-      model = gemma_model
+      model = gemma_model,
+      params = ellmer::params(reasoning_effort = "low")
     )
   ),
   tar_target(

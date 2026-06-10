@@ -13,7 +13,7 @@
 #' 
 
 output_ris_file <- function(ris, dest) {
-  writeLines(text = ris, con = dest)
+  writeLines(text = ris, con = dest, useBytes = TRUE)
 
   dest
 }
