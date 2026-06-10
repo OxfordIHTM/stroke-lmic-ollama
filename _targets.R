@@ -178,7 +178,8 @@ gemma_ollama_targets <- tar_plan(
     command = ellmer::chat_ollama(
       system_prompt = screening_context_prompt, 
       model = gemma_model,
-      params = llm_parameters
+      params = llm_parameters,
+      echo = "none"
     )
   ),
   tar_target(
@@ -215,7 +216,10 @@ deepseek_ollama_targets <- tar_plan(
   tar_target(
     name = deepseek_reviewer,
     command = ellmer::chat_ollama(
-      system_prompt = screening_context_prompt, model = deepseek_model
+      system_prompt = screening_context_prompt, 
+      model = deepseek_model,
+      params = llm_parameters,
+      echo = "none"
     )
   ),
   tar_target(
@@ -293,7 +297,10 @@ qwen_ollama_targets <- tar_plan(
   tar_target(
     name = qwen_reviewer,
     command = ellmer::chat_ollama(
-      system_prompt = screening_context_prompt, model = qwen_model
+      system_prompt = screening_context_prompt,
+      model = qwen_model,
+      params = llm_parameters,
+      echo = "none"
     )
   ),
   tar_target(
@@ -330,7 +337,10 @@ llama_ollama_targets <- tar_plan(
   tar_target(
     name = llama_reviewer,
     command = ellmer::chat_ollama(
-      system_prompt = screening_context_prompt, model = llama_model
+      system_prompt = screening_context_prompt,
+      model = llama_model,
+      params = llm_parameters,
+      echo = "none"
     )
   ),
   tar_target(
@@ -359,8 +369,6 @@ llama_ollama_targets <- tar_plan(
     )
   )
 )
-
-
 
 
 ## Analysis targets ----
