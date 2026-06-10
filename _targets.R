@@ -192,6 +192,17 @@ gemma_ollama_targets <- tar_plan(
     pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
+    name = gemma_test_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed[1:20, ],
+      screen_results = gemma_test_screen_primary
+    )
+  ),
+  tar_target(
+    name = gemma_test_screen_primary_flattened,
+    command = flatten_results(results_df = gemma_test_screen_primary_processed)
+  ),
+  tar_target(
     name = gemma_screen_primary,
     command = llm_screen_articles(
       reviewer = gemma_reviewer,
@@ -206,6 +217,10 @@ gemma_ollama_targets <- tar_plan(
       search_df = search_full_processed,
       screen_results = gemma_screen_primary
     )
+  ),  
+  tar_target(
+    name = gemma_screen_primary_flattened,
+    command = flatten_results(results_df = gemma_screen_primary_processed)
   )
 )
 
@@ -232,6 +247,19 @@ deepseek_ollama_targets <- tar_plan(
     pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
+    name = deepseek_test_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed[1:20, ],
+      screen_results = deepseek_test_screen_primary
+    )
+  ),
+  tar_target(
+    name = deepseek_test_screen_primary_flattened,
+    command = flatten_results(
+      results_df = deepseek_test_screen_primary_processed
+    )
+  ),
+  tar_target(
     name = deepseek_screen_primary,
     command = llm_screen_articles(
       reviewer = deepseek_reviewer,
@@ -246,6 +274,10 @@ deepseek_ollama_targets <- tar_plan(
       search_df = search_full_processed,
       screen_results = deepseek_screen_primary
     )
+  ),
+  tar_target(
+    name = deepseek_screen_primary_flattened,
+    command = flatten_results(results_df = deepseek_screen_primary_processed)
   )
 )
 
@@ -272,6 +304,17 @@ gpt_ollama_targets <- tar_plan(
     pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
+    name = gpt_test_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed[1:20, ],
+      screen_results = gpt_test_screen_primary
+    )
+  ),
+  tar_target(
+    name = gpt_test_screen_primary_flattened,
+    command = flatten_results(results_df = gpt_test_screen_primary_processed)
+  ),
+  tar_target(
     name = gpt_screen_primary,
     command = llm_screen_articles(
       reviewer = gpt_reviewer,
@@ -288,8 +331,8 @@ gpt_ollama_targets <- tar_plan(
     )
   ),
   tar_target(
-    name = gpt_screen_primary_processed_flattened,
-    command = flatten_search(processed_df = gpt_screen_primary_processed)
+    name = gpt_screen_primary_flattened,
+    command = flatten_results(results_df = gpt_screen_primary_processed)
   )
 )
 
@@ -316,6 +359,17 @@ qwen_ollama_targets <- tar_plan(
     pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
+    name = qwen_test_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed[1:20, ],
+      screen_results = qwen_test_screen_primary
+    )
+  ),
+  tar_target(
+    name = qwen_test_screen_primary_flattened,
+    command = flatten_results(results_df = qwen_test_screen_primary_processed)
+  ),
+  tar_target(
     name = qwen_screen_primary,
     command = llm_screen_articles(
       reviewer = qwen_reviewer,
@@ -330,6 +384,10 @@ qwen_ollama_targets <- tar_plan(
       search_df = search_full_processed,
       screen_results = qwen_screen_primary
     )
+  ),
+  tar_target(
+    name = qwen_screen_primary_flattened,
+    command = flatten_results(results_df = qwen_screen_primary_processed)
   )
 )
 
@@ -356,6 +414,17 @@ llama_ollama_targets <- tar_plan(
     pattern = slice(screening_prompt, 1:20)
   ),
   tar_target(
+    name = llama_test_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed[1:20, ],
+      screen_results = llama_test_screen_primary
+    )
+  ),
+  tar_target(
+    name = llama_test_screen_primary_flattened,
+    command = flatten_results(results_df = llama_test_screen_primary_processed)
+  ),
+  tar_target(
     name = llama_screen_primary,
     command = llm_screen_articles(
       reviewer = llama_reviewer,
@@ -370,6 +439,17 @@ llama_ollama_targets <- tar_plan(
       search_df = search_full_processed,
       screen_results = llama_screen_primary
     )
+  ),
+  tar_target(
+    name = llama_screen_primary_processed,
+    command = process_screening_primary(
+      search_df = search_full_processed,
+      screen_results = llama_screen_primary
+    )
+  ),
+  tar_target(
+    name = llama_screen_primary_flattened,
+    command = flatten_results(results_df = llama_screen_primary_processed)
   )
 )
 
@@ -408,10 +488,73 @@ output_targets <- tar_plan(
     )
   ),
   tar_target(
-    name = gpt_screen_primary_processed_flattened_csv,
+    name = gemma_test_screen_primary_flattened_csv,
     command = output_csv_file(
-      df = gpt_screen_primary_processed_flattened,
-      path = "data/gpt_screen_primary_processed_flattened.csv"
+      df = gemma_test_screen_primary_flattened,
+      path = "data/gemma_test_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = gemma_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = gemma_screen_primary_flattened,
+      path = "data/gemma_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = deepseek_test_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = deepseek_test_screen_primary_flattened,
+      path = "data/deepseek_test_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = deepseek_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = deepseek_screen_primary_flattened,
+      path = "data/deepseek_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = gpt_test_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = gpt_test_screen_primary_flattened,
+      path = "data/gpt_test_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = gpt_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = gpt_screen_primary_flattened,
+      path = "data/gpt_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = qwen_test_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = qwen_test_screen_primary_flattened,
+      path = "data/qwen_test_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = qwen_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = qwen_screen_primary_flattened,
+      path = "data/qwen_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = llama_test_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = llama_test_screen_primary_flattened,
+      path = "data/llama_test_screen_primary_flattened.csv"
+    )
+  ),
+  tar_target(
+    name = llama_screen_primary_flattened_csv,
+    command = output_csv_file(
+      df = llama_screen_primary_flattened,
+      path = "data/llama_screen_primary_flattened.csv"
     )
   )
 )
