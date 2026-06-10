@@ -166,6 +166,7 @@ llm_prompt_targets <- tar_plan(
         reasoning_effort = "low",
         reasoning_tokens = 0
     )
+  )
 )
 
 
