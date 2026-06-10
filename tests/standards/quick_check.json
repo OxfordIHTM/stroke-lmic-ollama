@@ -1,0 +1,222 @@
+[
+  {
+    "uid": "EB000000",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "Ethiopia",
+    "geography_criteria": "TRUE",
+    "study_type_context": "scoping review",
+    "study_type_criteria": "FALSE",
+    "topic_context": "prevalence, morbidity",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000001",
+    "age_context": "pediatric",
+    "age_criteria": "FALSE",
+    "geography_context": "Seoul, South Korea",
+    "geography_criteria": "FALSE",
+    "study_type_context": "retrospective cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors, morbidity",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000002",
+    "age_context": "adult",
+    "age_criteria": "TRUE",
+    "geography_context": "Turkiye",
+    "geography_criteria": "TRUE",
+    "study_type_context": "prospective, cross-sectional",
+    "study_type_criteria": "FALSE",
+    "topic_context": "risk factors, morbidity, diagnostics",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000003",
+    "age_context": "age 19 or older",
+    "age_criteria": "TRUE",
+    "geography_context": "South Korea",
+    "geography_criteria": "FALSE",
+    "study_type_context": "population-based cohort",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000004",
+    "age_context": "ages ranging from 18-80",
+    "age_criteria": "TRUE",
+    "geography_context": "Cangzhou, China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "case-control study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000005",
+    "age_context": "mean age 65.25",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "retrospective cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "morbidity, risk factor",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000006",
+    "age_context": "mean age 41.2 +/- 11.6 years",
+    "age_criteria": "TRUE",
+    "geography_context": "Ethiopia",
+    "geography_criteria": "TRUE",
+    "study_type_context": "scoping review",
+    "study_type_criteria": "FALSE",
+    "topic_context": "prevalence, morbidity",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000007",
+    "age_context": "median age 80.4",
+    "age_criteria": "TRUE",
+    "geography_context": "Europe and North Africa",
+    "geography_criteria": "TRUE",
+    "study_type_context": "registry-based cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000008",
+    "age_context": "aged >= 65",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "retrospective cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "prevalence, hospitalisation, morbidity",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000009",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "Turkey",
+    "geography_criteria": "TRUE",
+    "study_type_context": "retrospective cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000010",
+    "age_context": "mean +/- SD age was 65.2",
+    "age_criteria": "TRUE",
+    "geography_context": "Bhutan",
+    "geography_criteria": "TRUE",
+    "study_type_context": "retrospective cross-sectional study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "mortality, risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000011",
+    "age_context": "older adults",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "",
+    "study_type_criteria": "TRUE",
+    "topic_context": "prevalence, incidence, DALYs, risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000012",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "prevalence, incidence, risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000013",
+    "age_context": "67 years vs 72 years",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "prospective cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "intervention",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000015",
+    "age_context": "mean age 64 years",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "double-blind, placebo-controlled, 2x2 factorial, and randomised clinical trial",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors, diagnostics",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000016",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000017",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "retrospective study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "mortality, risk factors",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000018",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "randomized controlled trial",
+    "study_type_criteria": "TRUE",
+    "topic_context": "intervention",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000019",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "retrospective matched cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "interventions",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000010",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "global",
+    "geography_criteria": "FALSE",
+    "study_type_context": "meta-analysis",
+    "study_type_criteria": "FALSE",
+    "topic_context": "interventions",
+    "topic_criteria": "TRUE"
+  }
+]
