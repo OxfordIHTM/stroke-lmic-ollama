@@ -441,13 +441,6 @@ llama_ollama_targets <- tar_plan(
     )
   ),
   tar_target(
-    name = llama_screen_primary_processed,
-    command = process_screening_primary(
-      search_df = search_full_processed,
-      screen_results = llama_screen_primary
-    )
-  ),
-  tar_target(
     name = llama_screen_primary_flattened,
     command = flatten_results(results_df = llama_screen_primary_processed)
   )
