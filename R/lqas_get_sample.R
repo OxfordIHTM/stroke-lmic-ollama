@@ -15,5 +15,6 @@ lqas_get_sample <- function(df,
 
   selection <- lapply(X = lot_sizes, FUN = sample, size = sampframe$n)
 
-  Map(f = function(x,y) x[y, ], x = lots, y = selection)
+  Map(f = function(x,y) x[y, ], x = lots, y = selection) |>
+    dplyr::bind_rows()
 }
