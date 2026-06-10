@@ -256,7 +256,10 @@ gpt_ollama_targets <- tar_plan(
   tar_target(
     name = gpt_reviewer,
     command = ellmer::chat_ollama(
-      system_prompt = screening_context_prompt, model = gpt_model
+      system_prompt = screening_context_prompt, 
+      model = gpt_model,
+      params = llm_parameters,
+      echo = "none"
     )
   ),
   tar_target(

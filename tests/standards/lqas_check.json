@@ -1,8 +1,75 @@
 [
   {
-
+    "uid": "EB000370",
+    "lotid": "LOT0001",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "West Bengal",
+    "geography_criteria": "TRUE",
+    "study_type_context": "observational cross-sectional study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"
   },
   {
-    
+    "uid": "EB000248",
+    "lotid": "LOT0001",
+    "age_context": "18-44 years, 45-59 years, 60-74 years, and 75 years or older",
+    "age_criteria": "TRUE",
+    "geography_context": "Hong Kong, China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "population-based cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"    
+  },
+  {
+    "uid": "EB000477",
+    "lotid": "LOT0001",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "Indonesia",
+    "geography_criteria": "TRUE",
+    "study_type_context": "cross-sectional study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"    
+  },
+  {
+    "uid": "EB000470",
+    "lotid": "LOT0001",
+    "age_context": "median age 43.1 +/- 16.3",
+    "age_criteria": "TRUE",
+    "geography_context": "North India",
+    "geography_criteria": "TRUE",
+    "study_type_context": "retrospective cross-sectional study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors, diagnostics",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000431",
+    "lotid": "LOT0001",
+    "age_context": "NULL",
+    "age_criteria": "TRUE",
+    "geography_context": "China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "pooled individual patient cohort",
+    "study_type_criteria": "TRUE",
+    "topic_context": "intervention",
+    "topic_criteria": "TRUE"
+  },
+  {
+    "uid": "EB000248",
+    "lotid": "LOT0001",
+    "age_context": "18-44 years, 45-59 years, 60-74 years, and 75 years or older",
+    "age_criteria": "TRUE",
+    "geography_context": "Hong Kong, China",
+    "geography_criteria": "TRUE",
+    "study_type_context": "population-based cohort study",
+    "study_type_criteria": "TRUE",
+    "topic_context": "risk factors",
+    "topic_criteria": "TRUE"
   }
+
 ]
